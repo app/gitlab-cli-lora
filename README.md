@@ -1,4 +1,4 @@
-# gitlab-cli-lora-qwen3.8-27b
+# gitlab-cli-lora
 
 This repository is meant to be handed to a coding agent. Show it to your agent
 and ask it to take over.
