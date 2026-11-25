@@ -1,18 +1,15 @@
 # gitlab-cli-lora
 
-A LoRA fine-tune of a local model, end to end on one 24 GiB GPU.
+A LoRA fine-tune of a local model, done end to end on one 24 GiB GPU — a frozen
+benchmark, SFT datasets, Unsloth QLoRA training, vLLM evaluation, and a GGUF
+adapter for llama.cpp.
 
-It started from a gap: the best local model of its time (Qwen3.8-27B on
-an RTX 5090 D v2), driven through OpenCode, did not know the GitLab CLI
-— `glab` calls failed. The fix lives here: a frozen text-only benchmark,
-SFT datasets for both serving contracts, Unsloth QLoRA training on that
-same GPU, vLLM evaluation, and a GGUF adapter handed off
-to a local llama.cpp stack.
+Qwen3.8-27B on an RTX 5090 D v2, driven through OpenCode, did not know the
+GitLab CLI — `glab` calls failed. The fix lives here.
 
-Expect about 60 GB of downloads before an adapter is trained and scored.
-
-This project is for your agent. Just show it the repository — the
-[agent guide](AGENTS.md) tells it what to do.
+This project is for your agent. Show it the repository and it will train the
+adapter on your local GPU — the [agent guide](AGENTS.md) tells it what to do.
+One caveat: it downloads about 60 GB of model weights and tooling.
 
 No agent yet? Run one of these in the project directory:
 
