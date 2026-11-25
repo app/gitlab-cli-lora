@@ -1,8 +1,8 @@
 # Training data
 
-SFT datasets for the glab adapter. Everything under `tasks/` and `url/` is
-generated; do not edit the generated files by hand. Specs live next to their
-family, and the frozen serving contract lives under `contracts/`.
+SFT datasets for the glab adapter. Everything under `tasks/`, `url/` and
+`ext/` is generated; do not edit the generated files by hand. Specs live next
+to their family, and the frozen serving contract lives under `contracts/`.
 
 ## Layout
 
@@ -37,7 +37,8 @@ and tool schema differ.
 | `tasks/shell/{en,ru}` | 180 + 180 |
 | `url/glab/{en,ru}`    |   66 + 66 |
 | `url/shell/{en,ru}`   |   66 + 66 |
-| total                 |       984 |
+| `ext/shell/{en,ru}`   |   36 + 36 |
+| total                 |      1056 |
 
 `url/*/heldout.<lang>.jsonl` and `ext/shell/*/heldout.<lang>.jsonl` rows are
 never trained; they hold the held-out project/phrasing (url) and held-out tasks
