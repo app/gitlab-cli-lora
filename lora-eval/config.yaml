@@ -1,0 +1,63 @@
+# Separate evaluation suite for the trained QLoRA adapter. The frozen
+# glab-eval/config.yaml stays unchanged and remains the diagnostic baseline.
+# Run with GLAB_EVAL_CONFIG pointing at this file; all tasks, source snapshots,
+# and the chat template still come from the frozen glab-eval directory.
+endpoint:
+  base_url: "http://127.0.0.1:8000/v1"
+  api_key: "vllm"
+  model_id: "glab27b"
+  model_root: "/workspace/adapter"
+  vllm_version: "0.33.0"
+
+generation:
+  temperature: 0
+  reasoning_effort: "low"
+  max_tokens: 512
+  seed: null
+
+runtime:
+  repeats: 3
+  concurrency: 4
+  timeout_s: 90
+  retries: 2
+  retry_backoff_s: 1.0
+  mode: "api"
+
+tool:
+  name: "run_glab_command"
+  description: >-
+    Propose exactly one read-only glab CLI command that answers the user's
+    request. Do not execute anything and do not change repository state.
+  parameters:
+    command:
+      type: "string"
+      description: "The complete glab command, including flags and arguments."
+
+versions:
+  glab_version: "1.100.0"
+  skill_version: "1.16.2"
+  parser_version: "qwen-xml-v1"
+  normalization_version: "norm-v1"
+
+paths:
+  tasks: "tasks.jsonl"
+  sources: "docs/sources.json"
+  chat_template: "docs/chat_template.jinja"
+  results: "results"
+
+raw_mode_system_prompt: |-
+  You answer requests by proposing a single read-only glab CLI command.
+  Return the command only as a tool call in this native format:
+  <tool_call>
+  <function=run_glab_command>
+  <parameter=command>glab issue list</parameter>
+  </function>
+  </tool_call>
+  Never execute commands. Never propose commands that change repository state.
+
+# Shell-shape suites (attempt 1): frozen OpenCode serving contract loaded by
+# `--mode shell` (suite names shell27b-en / shell27b-ru). Paths are relative
+# to the glab-eval directory.
+shell_mode:
+  system_prompt: "../train/data/contracts/opencode/system-prompt.txt"
+  tool: "../train/data/contracts/opencode/shell-tool.json"

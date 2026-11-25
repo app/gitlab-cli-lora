@@ -1,0 +1,1515 @@
+{
+  "created_at": "2026-11-25T12:23:07.092624+00:00",
+  "endpoint": "qwen3.8-27b-glab27b",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "capture_sha256": "82d05810ae22f3278d8f3b0034415b27f83ba7df0ea7c2373bdcdfe87fb67404",
+  "system_prompt_sha256": "c2f98361712198c07bc6d222afc6208cd74737df9549b2c3b6714e92b56a8ba9",
+  "prompts": 50,
+  "http_failures": 0,
+  "results": [
+    {
+      "id": "own-01",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 4.01,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-02",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.93,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-03",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.96,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-04",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.1,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-05",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.18,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-06",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.04,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "glob",
+          "arguments": "{\"pattern\":\"glab\"}"
+        },
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-07",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.2,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-08",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.21,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-09",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.03,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-10",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.87,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-11",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.76,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-12",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.79,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-13",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.82,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-14",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.74,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-15",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.86,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-16",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.52,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-17",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.15,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-18",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.1,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-19",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.99,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-20",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.79,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-21",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.18,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-22",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.02,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-23",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.52,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-24",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.72,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-25",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.72,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-26",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.71,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-27",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.41,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-28",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.24,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-29",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.71,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "own-30",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.28,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-01",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.79,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-02",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.66,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-03",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.2,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-04",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.77,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-05",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.48,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-06",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.76,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-07",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.13,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-08",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.68,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-09",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.65,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-project-10",
+      "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.41,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/acme/tasks/-/work_items/7\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-01",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.9,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-02",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.59,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-03",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.08,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-04",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.77,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-05",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.51,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-06",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.39,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-07",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 0.55,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-08",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.28,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-09",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.05,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-phrase-10",
+      "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.05,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\":\"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    }
+  ]
+}

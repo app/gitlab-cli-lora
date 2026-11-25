@@ -1,0 +1,502 @@
+name: Evaluate glab 27B LoRA adapter
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "check | eval | score | probe | status"
+        required: true
+        default: "check"
+        type: string
+      adapter_run:
+        description: "27B training run directory name"
+        required: false
+        default: "glab27b-train-20261121T224418Z"
+        type: string
+      lang:
+        description: "Evaluation language: en | ru"
+        required: false
+        default: "en"
+        type: string
+      mode:
+        description: "Eval mode: api (frozen contract) | shell (frozen OpenCode contract)"
+        required: false
+        default: "api"
+        type: string
+
+      probe_prompts:
+        description: "JSONL of {id, prompt} for the probe action"
+        required: false
+        default: "probe-prompts.jsonl"
+        type: string
+
+jobs:
+  evaluate:
+    runs-on: gpu
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Serve adapter and evaluate
+        if: github.event.inputs.action == 'check' || github.event.inputs.action == 'eval'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ACTION: ${{ github.event.inputs.action }}
+          ADAPTER_RUN: ${{ github.event.inputs.adapter_run }}
+          EVAL_LANG: ${{ github.event.inputs.lang }}
+          EVAL_MODE: ${{ github.event.inputs.mode }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          case "$ACTION" in
+            check|eval) ;;
+            *) log "error unknown action=$ACTION"; exit 1 ;;
+          esac
+          case "$EVAL_LANG/$EVAL_MODE" in
+            en/api)   TASKS_FILE=tasks.jsonl;    SUITE=lora27b;     RESULTS_SUBDIR=lora-eval/results     BASELINE_AGG=results/aggregate.json ;;
+            ru/api)   TASKS_FILE=tasks.ru.jsonl; SUITE=lora27b-ru;  RESULTS_SUBDIR=lora-eval/results-ru  BASELINE_AGG=results/aggregate-ru.json ;;
+            en/shell) TASKS_FILE=tasks.jsonl;    SUITE=shell27b;    RESULTS_SUBDIR=lora-eval/results-shell    BASELINE_AGG="" ;;
+            ru/shell) TASKS_FILE=tasks.ru.jsonl; SUITE=shell27b-ru; RESULTS_SUBDIR=lora-eval/results-shell-ru BASELINE_AGG="" ;;
+            *) log "error unknown lang/mode=$EVAL_LANG/$EVAL_MODE"; exit 1 ;;
+          esac
+          log "lang=$EVAL_LANG mode=$EVAL_MODE tasks=$TASKS_FILE suite=$SUITE results=$RESULTS_SUBDIR"
+
+          ART_ROOT=/srv/containers/runner/training/qwen38-27b-lora
+          ADAPTER="$ART_ROOT/runs/$ADAPTER_RUN/adapter"
+          test -f "$ADAPTER/adapter_model.safetensors" || {
+            log "error adapter not found: $ADAPTER"; exit 1;
+          }
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-lora-eval"
+          mkdir -p "$REPORT_DIR"
+          LOG_FILE="$REPORT_DIR/ci-action.log"
+          exec > >(tee "$LOG_FILE") 2>&1
+
+          exec 9>>/srv/containers/runner/gpu.lock
+          flock -n 9 || { log "error gpu lock is held by another job"; exit 1; }
+          log "gpu lock acquired action=$ACTION adapter=$ADAPTER"
+
+          VLLM_CONTAINER=vllm-glab27b-lora
+          PROGRESS_PID=""
+          cleanup() {
+            [ -n "$PROGRESS_PID" ] && kill "$PROGRESS_PID" 2>/dev/null || true
+            log "cleanup stopping $VLLM_CONTAINER"
+            podman stop "$VLLM_CONTAINER" >/dev/null 2>&1 || true
+            podman rm -f "$VLLM_CONTAINER" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+
+          # Live progress: mirror the running log and finished runs to a
+          # scratch branch once a minute, so a stalled or failed run is visible
+          # without waiting for the final publish.
+          server="${GITHUB_SERVER_URL#http://}"
+          server="${server#https://}"
+          PROGRESS_REMOTE="http://x-access-token:${GITHUB_TOKEN:-}@${server}/${GITHUB_REPOSITORY}.git"
+          PROGRESS_BRANCH=ci/lora-progress
+          mirror_dir="/tmp/lora-progress-$$"
+          rm -rf "$mirror_dir"
+          if ! git clone -q --depth 1 --branch "$PROGRESS_BRANCH" "$PROGRESS_REMOTE" "$mirror_dir" 2>/dev/null; then
+            git init -q "$mirror_dir"
+            git -C "$mirror_dir" remote add origin "$PROGRESS_REMOTE"
+            git -C "$mirror_dir" checkout -q -b "$PROGRESS_BRANCH"
+          fi
+          progress_loop() {
+            while true; do
+              sleep 60
+              cp "$LOG_FILE" "$mirror_dir/ci-action.log" 2>/dev/null || true
+              mkdir -p "$mirror_dir/results"
+              for d in "$GITHUB_WORKSPACE"/glab-eval/results/"$SUITE"-[0-9]*; do
+                [ -d "$d" ] && cp -r "$d" "$mirror_dir/results/"
+              done
+              git -C "$mirror_dir" add -A
+              git -C "$mirror_dir" -c user.name=forgejo-actions \
+                -c user.email=actions@forgejo.local commit -qm "progress $(date -u +%FT%TZ)" 2>/dev/null || true
+              git -C "$mirror_dir" push -q --force origin "$PROGRESS_BRANCH" 2>/dev/null || true
+            done
+          }
+          progress_loop &
+          PROGRESS_PID=$!
+          log "progress mirror started branch=$PROGRESS_BRANCH"
+
+          podman rm -f "$VLLM_CONTAINER" >/dev/null 2>&1 || true
+          log "phase=start-vllm"
+          podman run -d --name "$VLLM_CONTAINER" --pull=never \
+            --device nvidia.com/gpu=all \
+            --shm-size 4g \
+            -p 8000:8000 \
+            -v /srv/containers/runner/vllm/hf:/root/.cache/huggingface:rw \
+            -v /srv/containers/runner/vllm/vllm-cache:/root/.cache/vllm:rw \
+            -v "$ADAPTER:/workspace/adapter:ro" \
+            -v "$GITHUB_WORKSPACE:/workspace/src:ro" \
+            -e HF_HOME=/root/.cache/huggingface \
+            -e HF_HUB_ENABLE_HF_TRANSFER=0 \
+            -e HF_XET_HIGH_PERFORMANCE=1 \
+            -e HF_TOKEN="${HF_TOKEN:-}" \
+            -e HUGGING_FACE_HUB_TOKEN="${HF_TOKEN:-}" \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/vllm/vllm-openai:v0.33.0 \
+            --model nvidia/Qwen3.8-27B-NVFP4 \
+            --served-model-name qwen3.8-27b-nvfp4 \
+            --host 0.0.0.0 --port 8000 \
+            --max-model-len 65536 \
+            --gpu-memory-utilization 0.95 \
+            --quantization modelopt_fp4 \
+            --language-model-only \
+            --kv-cache-dtype int4_per_token_head \
+            --kv-cache-memory-bytes 1717986918 \
+            --max-num-seqs 1 \
+            --max-num-batched-tokens 1024 \
+            --enable-prefix-caching \
+            --enable-auto-tool-choice \
+            --tool-call-parser qwen3_coder \
+            --reasoning-parser qwen3 \
+            --enable-lora \
+            --lora-modules glab27b=/workspace/adapter \
+            --max-lora-rank 16 \
+            --max-loras 1
+
+          log "phase=wait-health"
+          for i in $(seq 1 120); do
+            if curl -fsS --max-time 5 http://127.0.0.1:8000/health >/dev/null 2>&1; then
+              log "vLLM healthy after ${i}x15s"
+              break
+            fi
+            if [ "$i" -eq 120 ]; then
+              log "error vLLM health timeout"
+              podman logs --tail 200 "$VLLM_CONTAINER" 2>&1 | tee -a "$LOG_FILE" || true
+              exit 1
+            fi
+            log "waiting for vLLM health iteration=$i"
+            sleep 15
+          done
+
+          log "phase=models"
+          curl -fsS --max-time 30 http://127.0.0.1:8000/v1/models | tee "$REPORT_DIR/models.json" | jq '.data[] | {id, root, parent, max_model_len}'
+
+          if [ "$ACTION" = "check" ]; then
+            log "phase=done check"
+            exit 0
+          fi
+
+          log "phase=eval"
+          podman run --rm --pull=never \
+            --network=host \
+            --userns=keep-id \
+            --user "$(id -u):$(id -g)" \
+            -v "$GITHUB_WORKSPACE:/workspace/src:rw" \
+            -w /workspace/src/glab-eval \
+            -e GLAB_EVAL_CONFIG=/workspace/src/lora-eval/config.yaml \
+            -e GLAB_EVAL_TASKS="$TASKS_FILE" \
+            -e EVAL_LANG="$EVAL_LANG" \
+            -e EVAL_MODE="$EVAL_MODE" \
+            -e EVAL_SUITE="$SUITE" \
+            -e RESULTS_SUBDIR="$RESULTS_SUBDIR" \
+            -e BASELINE_AGG="$BASELINE_AGG" \
+            -e HOME=/tmp/lora-eval-home \
+            -e PYTHONUSERBASE=/tmp/lora-eval-home/.local \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/pytorch/pytorch:2.15.0-cuda13.2-cudnn9-runtime \
+            bash -c '
+              set -euo pipefail
+              python -m pip install --user --break-system-packages --quiet --no-warn-script-location httpx pyyaml
+              # score.py overwrites the shared aggregate; keep the frozen one for compare.py.
+              # Shell suites have no frozen baseline aggregate; they are scored, not compared.
+              if [ -n "$BASELINE_AGG" ]; then
+                test -f "$BASELINE_AGG" || {
+                  echo "missing $BASELINE_AGG: for ru, first run GLAB_EVAL_LANG=ru ./run_baseline.sh (r1-r3) and aggregate into results/aggregate-ru.json"
+                  exit 1
+                }
+                cp "$BASELINE_AGG" /tmp/baseline-aggregate.json
+              fi
+              run_dirs=()
+              for rep in r1 r2 r3; do
+                echo "=== $EVAL_SUITE $rep ==="
+                output="$(python run_eval.py --suite "$EVAL_SUITE" --rep "$rep" --mode "$EVAL_MODE")"
+                printf '%s\n' "$output"
+                run_id="${output#run_id=}"
+                run_id="${run_id%% *}"
+                run_dirs+=("results/$run_id")
+              done
+              for run_dir in "${run_dirs[@]}"; do
+                python score.py --run-dir "$run_dir"
+              done
+              python score.py --aggregate "${run_dirs[@]}"
+              if [ -n "$BASELINE_AGG" ]; then
+                python /workspace/src/compare.py \
+                  --baseline /tmp/baseline-aggregate.json \
+                  --adapter results/aggregate.json \
+                  --output-dir "/workspace/src/$RESULTS_SUBDIR"
+              fi
+            '
+
+          log "phase=collect"
+          RESULTS_DIR="$GITHUB_WORKSPACE/$RESULTS_SUBDIR"
+          mkdir -p "$RESULTS_DIR"
+          cp "$GITHUB_WORKSPACE/glab-eval/results/aggregate.json" "$RESULTS_DIR/aggregate.json"
+          cp "$GITHUB_WORKSPACE/glab-eval/results/index.json" "$RESULTS_DIR/index.json"
+          cp "$RESULTS_DIR/aggregate.json" "$REPORT_DIR/lora-aggregate.json"
+          cp "$RESULTS_DIR/index.json" "$REPORT_DIR/index.json"
+          cp "$RESULTS_DIR/compare.json" "$RESULTS_DIR/compare.md" "$REPORT_DIR/" 2>/dev/null || true
+          for run_dir in "$GITHUB_WORKSPACE"/glab-eval/results/*; do
+            [ -d "$run_dir" ] || continue
+            name="$(basename "$run_dir")"
+            # $SUITE-[0-9] pins the timestamp so suite prefixes (lora27b vs lora27b-ru) stay separate.
+            case "$name" in
+              $SUITE-[0-9]*) ;;
+              *) continue ;;
+            esac
+            rm -rf "$RESULTS_DIR/$name" "$REPORT_DIR/$name"
+            cp -r "$run_dir" "$RESULTS_DIR/$name"
+            cp -r "$run_dir" "$REPORT_DIR/$name"
+          done
+          cat "$RESULTS_DIR/aggregate.json"
+          log "phase=done eval"
+          BASH
+
+      - name: Probe tool selection with the frozen 14-tool capture
+        if: github.event.inputs.action == 'probe'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          ADAPTER_RUN: ${{ github.event.inputs.adapter_run }}
+          PROBE_PROMPTS: ${{ github.event.inputs.probe_prompts }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          ART_ROOT=/srv/containers/runner/training/qwen38-27b-lora
+          ADAPTER="$ART_ROOT/runs/$ADAPTER_RUN/adapter"
+          test -f "$ADAPTER/adapter_model.safetensors" || {
+            log "error adapter not found: $ADAPTER"; exit 1;
+          }
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-lora-eval"
+          mkdir -p "$REPORT_DIR"
+          exec > >(tee "$REPORT_DIR/ci-probe.log") 2>&1
+
+          exec 9>>/srv/containers/runner/gpu.lock
+          flock -n 9 || { log "error gpu lock is held by another job"; exit 1; }
+          log "gpu lock acquired action=probe adapter=$ADAPTER"
+
+          VLLM_CONTAINER=vllm-glab27b-lora
+          cleanup() {
+            log "cleanup stopping $VLLM_CONTAINER"
+            podman stop "$VLLM_CONTAINER" >/dev/null 2>&1 || true
+            podman rm -f "$VLLM_CONTAINER" >/dev/null 2>&1 || true
+          }
+          trap cleanup EXIT
+
+          podman rm -f "$VLLM_CONTAINER" >/dev/null 2>&1 || true
+          log "phase=start-vllm"
+          podman run -d --name "$VLLM_CONTAINER" --pull=never \
+            --device nvidia.com/gpu=all \
+            --shm-size 4g \
+            -p 8000:8000 \
+            -v /srv/containers/runner/vllm/hf:/root/.cache/huggingface:rw \
+            -v /srv/containers/runner/vllm/vllm-cache:/root/.cache/vllm:rw \
+            -v "$ADAPTER:/workspace/adapter:ro" \
+            -v "$GITHUB_WORKSPACE:/workspace/src:ro" \
+            -e HF_HOME=/root/.cache/huggingface \
+            -e HF_HUB_ENABLE_HF_TRANSFER=0 \
+            -e HF_XET_HIGH_PERFORMANCE=1 \
+            -e HF_TOKEN="${HF_TOKEN:-}" \
+            -e HUGGING_FACE_HUB_TOKEN="${HF_TOKEN:-}" \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/vllm/vllm-openai:v0.33.0 \
+            --model nvidia/Qwen3.8-27B-NVFP4 \
+            --served-model-name qwen3.8-27b-nvfp4 \
+            --host 0.0.0.0 --port 8000 \
+            --max-model-len 65536 \
+            --gpu-memory-utilization 0.95 \
+            --quantization modelopt_fp4 \
+            --language-model-only \
+            --kv-cache-dtype int4_per_token_head \
+            --kv-cache-memory-bytes 1717986918 \
+            --max-num-seqs 1 \
+            --max-num-batched-tokens 1024 \
+            --enable-prefix-caching \
+            --enable-auto-tool-choice \
+            --tool-call-parser qwen3_coder \
+            --reasoning-parser qwen3 \
+            --enable-lora \
+            --lora-modules glab27b=/workspace/adapter \
+            --max-lora-rank 16 \
+            --max-loras 1
+
+          log "phase=wait-health"
+          for i in $(seq 1 120); do
+            if curl -fsS --max-time 5 http://127.0.0.1:8000/health >/dev/null 2>&1; then
+              log "vLLM healthy after ${i}x15s"
+              break
+            fi
+            if [ "$i" -eq 120 ]; then
+              log "error vLLM health timeout"
+              podman logs --tail 200 "$VLLM_CONTAINER" 2>&1 | tee -a "$REPORT_DIR/ci-probe.log" || true
+              exit 1
+            fi
+            log "waiting for vLLM health iteration=$i"
+            sleep 15
+          done
+
+          log "phase=probe"
+          podman run --rm --pull=never \
+            --network=host \
+            --userns=keep-id \
+            --user "$(id -u):$(id -g)" \
+            -v "$GITHUB_WORKSPACE:/workspace/src:rw" \
+            -w /workspace/src/glab-eval \
+            -e GLAB_EVAL_CONFIG=/workspace/src/lora-eval/config.yaml \
+            -e PROBE_PROMPTS="$PROBE_PROMPTS" \
+            -e HOME=/tmp/probe-home \
+            -e PYTHONUSERBASE=/tmp/probe-home/.local \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/pytorch/pytorch:2.15.0-cuda13.2-cudnn9-runtime \
+            bash -c '
+              set -euo pipefail
+              python -m pip install --user --break-system-packages --quiet --no-warn-script-location httpx pyyaml
+              python probe_opencode_payload.py --prompts-file "$PROBE_PROMPTS"
+            '
+
+          log "phase=collect"
+          probe_dir="$(ls -1dt "$GITHUB_WORKSPACE"/glab-eval/results/probe-* | head -1)"
+          test -n "$probe_dir" || { log "error no probe output"; exit 1; }
+          name="$(basename "$probe_dir")"
+          mkdir -p "$GITHUB_WORKSPACE/lora-eval/probes/$name"
+          cp "$probe_dir/probe.json" "$GITHUB_WORKSPACE/lora-eval/probes/$name/probe.json"
+          cp "$probe_dir/probe.json" "$REPORT_DIR/probe.json"
+          jq '.results[] | {id, tool_calls}' "$probe_dir/probe.json"
+          log "phase=done probe $name"
+          BASH
+
+      - name: Score existing LoRA runs
+        if: github.event.inputs.action == 'score'
+        env:
+          EVAL_LANG: ${{ github.event.inputs.lang }}
+          EVAL_MODE: ${{ github.event.inputs.mode }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          case "$EVAL_LANG/$EVAL_MODE" in
+            en/api)   SUITE=lora27b;     RESULTS_SUBDIR=lora-eval/results     BASELINE_AGG=results/aggregate.json ;;
+            ru/api)   SUITE=lora27b-ru;  RESULTS_SUBDIR=lora-eval/results-ru  BASELINE_AGG=results/aggregate-ru.json ;;
+            en/shell) SUITE=shell27b;    RESULTS_SUBDIR=lora-eval/results-shell    BASELINE_AGG="" ;;
+            ru/shell) SUITE=shell27b-ru; RESULTS_SUBDIR=lora-eval/results-shell-ru BASELINE_AGG="" ;;
+            *) log "error unknown lang/mode=$EVAL_LANG/$EVAL_MODE"; exit 1 ;;
+          esac
+          log "lang=$EVAL_LANG mode=$EVAL_MODE suite=$SUITE results=$RESULTS_SUBDIR"
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-lora-eval"
+          mkdir -p "$REPORT_DIR"
+          exec > >(tee "$REPORT_DIR/ci-action.log") 2>&1
+          log "phase=score-existing"
+          podman run --rm --pull=never \
+            --network=host \
+            --userns=keep-id \
+            --user "$(id -u):$(id -g)" \
+            -v "$GITHUB_WORKSPACE:/workspace/src:rw" \
+            -v "$GITHUB_WORKSPACE/$RESULTS_SUBDIR:/workspace/lora-results:rw" \
+            -w /workspace/src/glab-eval \
+            -e EVAL_LANG="$EVAL_LANG" \
+            -e EVAL_SUITE="$SUITE" \
+            -e RESULTS_SUBDIR="$RESULTS_SUBDIR" \
+            -e BASELINE_AGG="$BASELINE_AGG" \
+            -e HOME=/tmp/lora-eval-home \
+            -e PYTHONUSERBASE=/tmp/lora-eval-home/.local \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/pytorch/pytorch:2.15.0-cuda13.2-cudnn9-runtime \
+            bash -c '
+              set -euo pipefail
+              if [ -n "$BASELINE_AGG" ]; then
+                test -f "$BASELINE_AGG" || {
+                  echo "missing $BASELINE_AGG: for ru, first run GLAB_EVAL_LANG=ru ./run_baseline.sh (r1-r3) and aggregate into results/aggregate-ru.json"
+                  exit 1
+                }
+                cp "$BASELINE_AGG" /tmp/baseline-aggregate.json
+              fi
+              run_dirs=()
+              for rep in r1 r2 r3; do
+                # [0-9] pins the timestamp so lora27b never matches lora27b-ru run dirs.
+                dir="$(ls -1dt /workspace/lora-results/$EVAL_SUITE-[0-9]*-$rep 2>/dev/null | head -1 || true)"
+                test -n "$dir" || { echo "missing $EVAL_SUITE run for $rep"; exit 1; }
+                rm -rf "results/$(basename "$dir")"
+                cp -r "$dir" results/
+                run_dirs+=("results/$(basename "$dir")")
+              done
+              for run_dir in "${run_dirs[@]}"; do
+                echo "=== scoring $run_dir ==="
+                python score.py --run-dir "$run_dir"
+              done
+              python score.py --aggregate "${run_dirs[@]}"
+              if [ -n "$BASELINE_AGG" ]; then
+                python /workspace/src/compare.py \
+                  --baseline /tmp/baseline-aggregate.json \
+                  --adapter results/aggregate.json \
+                  --output-dir "/workspace/src/$RESULTS_SUBDIR"
+              fi
+            '
+          log "phase=collect"
+          RESULTS_DIR="$GITHUB_WORKSPACE/$RESULTS_SUBDIR"
+          cp "$GITHUB_WORKSPACE/glab-eval/results/aggregate.json" "$RESULTS_DIR/aggregate.json"
+          cp "$GITHUB_WORKSPACE/glab-eval/results/index.json" "$RESULTS_DIR/index.json"
+          cp "$RESULTS_DIR/aggregate.json" "$REPORT_DIR/lora-aggregate.json"
+          cp "$RESULTS_DIR/index.json" "$REPORT_DIR/index.json"
+          cp "$RESULTS_DIR/compare.json" "$RESULTS_DIR/compare.md" "$REPORT_DIR/" 2>/dev/null || true
+          for run_dir in "$RESULTS_DIR"/*; do
+            [ -d "$run_dir" ] || continue
+            name="$(basename "$run_dir")"
+            case "$name" in
+              $SUITE-[0-9]*) ;;
+              *) continue ;;
+            esac
+            rm -rf "$REPORT_DIR/$name"
+            cp -r "$run_dir" "$REPORT_DIR/$name"
+          done
+          cat "$RESULTS_DIR/aggregate.json"
+          log "phase=done score"
+          BASH
+
+      - name: Status
+        if: github.event.inputs.action == 'status'
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          log "phase=status"
+          podman ps -a --filter name=vllm-glab27b-lora --format '{{.Names}} {{.Status}}' || true
+          curl -fsS --max-time 10 http://127.0.0.1:8000/v1/models | jq '.data[] | {id, root}' || true
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          BASH
+
+      - name: Publish report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          cd "$GITHUB_WORKSPACE"
+          mkdir -p ci-lora-eval
+          # Keep frozen baseline artifacts untouched even though score.py writes
+          # a shared aggregate.json and index.json.
+          git checkout -- glab-eval/results/aggregate.json glab-eval/results/index.json 2>/dev/null || true
+          git config user.name "forgejo-actions"
+          git config user.email "actions@forgejo.local"
+          server="${GITHUB_SERVER_URL#http://}"
+          server="${server#https://}"
+          remote="http://x-access-token:${GITHUB_TOKEN}@${server}/${GITHUB_REPOSITORY}.git"
+
+          # Publish lora-eval artifacts to main, next to the frozen baseline.
+          # Only existing directories: git add fails on a missing pathspec, and
+          # each run writes at most one results subdirectory.
+          publish_paths=()
+          for path in lora-eval/results lora-eval/results-ru lora-eval/results-shell lora-eval/results-shell-ru lora-eval/probes; do
+            [ -d "$path" ] && publish_paths+=("$path")
+          done
+          if [ ${#publish_paths[@]} -gt 0 ] && [ -n "$(git status --porcelain "${publish_paths[@]}")" ]; then
+            git add -f "${publish_paths[@]}"
+            git commit -m "ci: publish lora eval results"
+            git fetch "$remote" main
+            git rebase FETCH_HEAD
+            git push "$remote" HEAD:main
+          fi
+
+          # Publish the full CI log separately so it cannot bloat main.
+          git checkout -B ci/lora-eval-report
+          git add -f ci-lora-eval
+          git commit -m "ci: lora eval report" || true
+          git push --force "$remote" HEAD:ci/lora-eval-report || true
+          BASH

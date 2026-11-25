@@ -1,0 +1,134 @@
+name: Train smoke 4B
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "train | status"
+        required: true
+        default: "train"
+        type: string
+      max_steps:
+        description: "Number of smoke training steps"
+        required: false
+        default: "10"
+        type: string
+      raw_limit:
+        description: "Raw dataset rows to consider"
+        required: false
+        default: "256"
+        type: string
+      dataset_size:
+        description: "Formatted dataset rows kept for training"
+        required: false
+        default: "64"
+        type: string
+
+jobs:
+  train:
+    runs-on: gpu
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check GPU state and lock
+        if: github.event.inputs.action == 'train'
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          log "phase=preflight"
+          test -f train/smoke_4b.py
+          test -f train/run_smoke_4b.sh
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          BASH
+
+      - name: Train 4B smoke adapter
+        if: github.event.inputs.action == 'train'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          MAX_STEPS: ${{ github.event.inputs.max_steps }}
+          RAW_LIMIT: ${{ github.event.inputs.raw_limit }}
+          DATASET_SIZE: ${{ github.event.inputs.dataset_size }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          ART_ROOT=/srv/containers/runner/training/qwen38-27b-lora
+          RUN_NAME="smoke4b-$(date -u +%Y%m%dT%H%M%SZ)"
+          RUN_DIR="$ART_ROOT/runs/$RUN_NAME"
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-smoke-4b"
+          mkdir -p "$ART_ROOT/hf" "$ART_ROOT/pip-cache" "$RUN_DIR/adapter" "$REPORT_DIR"
+          LOG_FILE="$REPORT_DIR/ci-action.log"
+          log "phase=start run=$RUN_NAME artifacts=$RUN_DIR"
+
+          exec 9>>/srv/containers/runner/gpu.lock
+          flock -n 9 || { log "error gpu lock is held by another job"; exit 1; }
+          log "gpu lock acquired"
+
+          (
+            while true; do
+              log "workflow-heartbeat run=$RUN_NAME"
+              sleep 30
+            done
+          ) &
+          HB_PID=$!
+          trap 'kill "$HB_PID" 2>/dev/null || true' EXIT
+
+          timeout 45m podman run --rm --pull=never \
+            --device nvidia.com/gpu=all \
+            -v "$GITHUB_WORKSPACE:/workspace/src:rw" \
+            -v "$ART_ROOT:/workspace/artifacts:rw" \
+            -v "$ART_ROOT/hf:/workspace/.cache/huggingface:rw" \
+            -v "$ART_ROOT/pip-cache:/workspace/.cache/pip:rw" \
+            -e HF_HOME=/workspace/.cache/huggingface \
+            -e PIP_CACHE_DIR=/workspace/.cache/pip \
+            -e HF_TOKEN="${HF_TOKEN:-}" \
+            -e PYTHONUNBUFFERED=1 \
+            -e SMOKE_MODEL=unsloth/Qwen3-4B-Instruct-2507-unsloth-bnb-4bit \
+            -e SMOKE_DATASET=NousResearch/hermes-function-calling-v1 \
+            -e SMOKE_STEPS="$MAX_STEPS" \
+            -e SMOKE_RAW_LIMIT="$RAW_LIMIT" \
+            -e SMOKE_DATASET_SIZE="$DATASET_SIZE" \
+            -e ARTIFACTS_DIR="/workspace/artifacts/runs/$RUN_NAME" \
+            -w /workspace/src \
+            docker.io/pytorch/pytorch:2.15.0-cuda13.2-cudnn9-runtime \
+            bash train/run_smoke_4b.sh 2>&1 | tee "$LOG_FILE"
+
+          log "phase=verify"
+          test -f "$RUN_DIR/manifest.json"
+          cat "$RUN_DIR/manifest.json"
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          log "phase=done run=$RUN_NAME"
+          BASH
+
+      - name: Status
+        if: github.event.inputs.action == 'status'
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          log "phase=status"
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          df -h /srv/containers || true
+          find /srv/containers/runner/training/qwen38-27b-lora/runs -maxdepth 2 -name manifest.json -print 2>/dev/null || true
+          BASH
+
+      - name: Publish report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          cd "$GITHUB_WORKSPACE"
+          mkdir -p ci-smoke-4b
+          latest="$(find /srv/containers/runner/training/qwen38-27b-lora/runs -maxdepth 2 -name manifest.json -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -1 | cut -d' ' -f2- || true)"
+          if [ -n "$latest" ]; then
+            cp "$latest" ci-smoke-4b/manifest.json
+          fi
+          git config user.name "forgejo-actions"
+          git config user.email "actions@forgejo.local"
+          git checkout -B ci/training-smoke-4b-report
+          git add -f ci-smoke-4b
+          git commit -m "ci: training smoke 4B report" || true
+          server="${GITHUB_SERVER_URL#http://}"
+          server="${server#https://}"
+          git push --force "http://x-access-token:${GITHUB_TOKEN}@${server}/${GITHUB_REPOSITORY}.git" HEAD:ci/training-smoke-4b-report || true
+          BASH

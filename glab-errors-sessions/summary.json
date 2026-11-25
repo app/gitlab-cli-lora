@@ -1,0 +1,45 @@
+{
+  "scanned_at": "2026-11-24T16:49:56.720176+00:00",
+  "opencode_version": "2.4.1",
+  "sessions_total": 181,
+  "sessions_scanned": 181,
+  "sessions_with_glab": 42,
+  "glab_invocations": 257,
+  "turns_with_glab": 55,
+  "class_counts": {
+    "ok": 150,
+    "env_auth": 28,
+    "api_endpoint": 26,
+    "cli_usage": 11,
+    "pipeline_jq": 11,
+    "graphql": 10,
+    "env_fs": 9,
+    "network": 5,
+    "aborted": 3,
+    "other_exit": 3,
+    "repo_context": 1
+  },
+  "pure_glab_errors": 48,
+  "sessions_with_errors": 18,
+  "unique_error_prompt_texts": 4,
+  "errors_with_recovery": 44,
+  "by_class": {
+    "api_endpoint": 26,
+    "cli_usage": 11,
+    "graphql": 10,
+    "repo_context": 1
+  },
+  "by_project": {
+    "/home/opencode/projects/11": 38,
+    "/home/opencode/projects/backend.lk.projectplus.ru": 10
+  },
+  "by_model": {
+    "qwen3.8-27b-glab27b": 28,
+    "qwen3.8:27b-custom-64kctx": 10,
+    "qwen3.8-27b-gguf": 3,
+    "deepseek-flash": 3,
+    "gpt-oss-20b-64kctx": 2,
+    "qwen3.8-27b-gguf-local": 2
+  },
+  "dedup_keys": 41
+}

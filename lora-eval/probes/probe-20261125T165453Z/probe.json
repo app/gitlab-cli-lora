@@ -1,0 +1,761 @@
+{
+  "created_at": "2026-11-25T16:55:50.462881+00:00",
+  "endpoint": "glab27b",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "capture_sha256": "82d05810ae22f3278d8f3b0034415b27f83ba7df0ea7c2373bdcdfe87fb67404",
+  "system_prompt_sha256": "c2f98361712198c07bc6d222afc6208cd74737df9549b2c3b6714e92b56a8ba9",
+  "prompts": 25,
+  "http_failures": 0,
+  "results": [
+    {
+      "id": "holdout-ci-trace-1",
+      "prompt": "покажи лог джоба 456",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.74,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab ci get 456\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-ci-trace-2",
+      "prompt": "покажи лог джоба 456",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.09,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab ci log 456\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-ci-trace-3",
+      "prompt": "покажи лог джоба 456",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.82,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab ci get 456\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-ci-trace-4",
+      "prompt": "покажи лог джоба 456",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.33,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab ci log 456\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-ci-trace-5",
+      "prompt": "покажи лог джоба 456",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.78,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab ci log 456\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-release-view-1",
+      "prompt": "покажи релиз v1.2.0",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.09,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab release view v1.2.0\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-release-view-2",
+      "prompt": "покажи релиз v1.2.0",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.89,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab release view v1.2.0\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-release-view-3",
+      "prompt": "покажи релиз v1.2.0",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.33,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab release view v1.2.0\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-release-view-4",
+      "prompt": "покажи релиз v1.2.0",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.76,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab release view v1.2.0\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-release-view-5",
+      "prompt": "покажи релиз v1.2.0",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.41,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab release view v1.2.0\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-tags-api-1",
+      "prompt": "покажи теги репозитория org/project через api",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.83,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"projects/org%2Fproject/repository/tags\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-tags-api-2",
+      "prompt": "покажи теги репозитория org/project через api",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.64,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"projects/org%2Fproject/repository/tags\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-tags-api-3",
+      "prompt": "покажи теги репозитория org/project через api",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.84,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"projects/org%2Fproject/repository/tags\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-tags-api-4",
+      "prompt": "покажи теги репозитория org/project через api",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.74,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"projects/org%2Fproject/repository/tags\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "holdout-tags-api-5",
+      "prompt": "покажи теги репозитория org/project через api",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.89,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"repositories/org/project/tags\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "trained-mr-diff-1",
+      "prompt": "покажи изменения в merge request 123",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.89,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr diff 123\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "trained-mr-diff-2",
+      "prompt": "покажи изменения в merge request 123",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.43,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr diff 123\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "trained-mr-diff-3",
+      "prompt": "покажи изменения в merge request 123",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.69,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr diff 123\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "trained-mr-diff-4",
+      "prompt": "покажи изменения в merge request 123",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 3.34,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr diff 123\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "trained-mr-diff-5",
+      "prompt": "покажи изменения в merge request 123",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.82,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr diff 123\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "owner-url-1",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.51,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "owner-url-2",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 3.13,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "owner-url-3",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 8.43,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "owner-url-4",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.62,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "owner-url-5",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.95,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "created_at": "2026-11-24T16:50:27.731615+00:00",
+  "source": "opencode api get /api/session and /api/session/{id}/message",
+  "opencode_version": "2.4.1",
+  "sessions_total": 181,
+  "sessions_scanned": 181,
+  "pure_glab_classes": [
+    "cli_usage",
+    "api_endpoint",
+    "graphql",
+    "repo_context"
+  ],
+  "sha256": {
+    "records.jsonl": "72290327808836ae3937bfdd93954289f0426b8aa0bd99ab198f5e6556b15b55",
+    "turns.jsonl": "c1943b5e4f590c2ff54c14b95e7716fd48b3490383c151af8741f162b37700cc",
+    "errors.jsonl": "29d92854db4350f21a2a692bb88b366fd2d5db3c3ff2fea4154a36e99b56fac2"
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "ru": [
+    {
+      "id": "glab-bare",
+      "kind": "url",
+      "split": "train",
+      "template": "прочитай командой glab {url}"
+    },
+    {
+      "id": "work-item",
+      "kind": "url",
+      "split": "train",
+      "template": "покажи work item по ссылке {url}"
+    },
+    {
+      "id": "task-glab",
+      "kind": "url",
+      "split": "train",
+      "template": "открой задачу {url} через glab"
+    },
+    {
+      "id": "read-bare",
+      "kind": "url",
+      "split": "train",
+      "template": "прочитай {url}"
+    },
+    {
+      "id": "what-bare",
+      "kind": "url",
+      "split": "train",
+      "template": "что написано по ссылке {url}?"
+    },
+    {
+      "id": "api-rest",
+      "kind": "api",
+      "split": "train",
+      "template": "получи work item {iid} проекта {group}/{project} через api"
+    },
+    {
+      "id": "holdout-read",
+      "kind": "url",
+      "split": "holdout",
+      "template": "что написано в задаче {url}? прочитай через glab"
+    }
+  ],
+  "en": [
+    {
+      "id": "glab-bare",
+      "kind": "url",
+      "split": "train",
+      "template": "read {url} with glab"
+    },
+    {
+      "id": "work-item",
+      "kind": "url",
+      "split": "train",
+      "template": "show the work item at {url}"
+    },
+    {
+      "id": "task-glab",
+      "kind": "url",
+      "split": "train",
+      "template": "open the task {url} via glab"
+    },
+    {
+      "id": "read-bare",
+      "kind": "url",
+      "split": "train",
+      "template": "read {url}"
+    },
+    {
+      "id": "what-bare",
+      "kind": "url",
+      "split": "train",
+      "template": "what does {url} contain?"
+    },
+    {
+      "id": "api-rest",
+      "kind": "api",
+      "split": "train",
+      "template": "fetch work item {iid} from {group}/{project} through the api"
+    },
+    {
+      "id": "holdout-read",
+      "kind": "url",
+      "split": "holdout",
+      "template": "what does the task at {url} say? read it through glab"
+    }
+  ]
+}

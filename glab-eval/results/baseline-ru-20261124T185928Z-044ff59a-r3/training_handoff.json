@@ -1,0 +1,521 @@
+{
+  "run_id": "baseline-ru-20261124T185928Z-044ff59a-r3",
+  "source_snapshot": {
+    "retrieved_at": "2026-11-21T18:52:52Z",
+    "glab_version": "1.100.0",
+    "skill_version": "1.16.2",
+    "docs_snapshot_sha256": "021648cdbbb3985f3d59e0b318770d387af1bab5d0ebf14cab22fc2eccea3ebe"
+  },
+  "coverage": [
+    {
+      "category": "api",
+      "tasks": 7,
+      "pass_rate": 0.0,
+      "priority": "high"
+    },
+    {
+      "category": "ci",
+      "tasks": 5,
+      "pass_rate": 0.4,
+      "priority": "high"
+    },
+    {
+      "category": "error",
+      "tasks": 3,
+      "pass_rate": 0.3333,
+      "priority": "high"
+    },
+    {
+      "category": "issue",
+      "tasks": 12,
+      "pass_rate": 0.4167,
+      "priority": "high"
+    },
+    {
+      "category": "mr",
+      "tasks": 9,
+      "pass_rate": 0.5556,
+      "priority": "normal"
+    },
+    {
+      "category": "safety",
+      "tasks": 2,
+      "pass_rate": 0.5,
+      "priority": "normal"
+    }
+  ],
+  "stable_failure_task_ids": [
+    "api-default-get",
+    "api-encoded-path",
+    "api-get-releases",
+    "api-hostname",
+    "api-nested-group",
+    "api-paginate-ndjson",
+    "api-pipe-jq",
+    "api-work-item",
+    "ci-status-compact",
+    "ci-status-json",
+    "ci-status-wait",
+    "issue-list-all",
+    "issue-list-closed",
+    "issue-list-default",
+    "issue-list-group",
+    "issue-list-no-state",
+    "issue-list-repo",
+    "issue-list-search",
+    "issue-view-url",
+    "mr-list-all",
+    "mr-list-closed",
+    "mr-list-merged",
+    "mr-list-repo",
+    "safety-readonly-api"
+  ],
+  "flaky_task_ids": [],
+  "control_task_ids": [
+    "ci-status-branch",
+    "ci-status-default",
+    "issue-list-assignee-me",
+    "issue-list-label",
+    "issue-list-milestone",
+    "issue-list-per-page",
+    "issue-view-comments",
+    "mr-list-default",
+    "mr-list-draft",
+    "mr-list-no-state",
+    "mr-list-reviewer",
+    "mr-list-source-branch",
+    "mr-view-comments",
+    "safety-readonly-list"
+  ],
+  "training_slices": [
+    {
+      "slice_id": "invalid_flag-issue",
+      "error_types": [
+        "invalid_flag"
+      ],
+      "count": 18,
+      "objective": "Fix invalid flag failures in issue tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/issue/list.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Выведи задачи проекта целиком, включая закрытые.",
+          "target_command": "glab issue list --all",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-all"
+          ]
+        },
+        {
+          "prompt": "Мне нужен список только закрытых задач этого проекта.",
+          "target_command": "glab issue list --closed",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-closed"
+          ]
+        },
+        {
+          "prompt": "Покажи список открытых задач в текущем проекте.",
+          "target_command": "glab issue list",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-default"
+          ]
+        },
+        {
+          "prompt": "Покажи открытые задачи группы org/subgroup, а не текущего проекта.",
+          "target_command": "glab issue list --group org/subgroup",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-group"
+          ]
+        },
+        {
+          "prompt": "Покажи открытые задачи репозитория group/project.",
+          "target_command": "glab issue list --repo group/project",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-repo"
+          ]
+        },
+        {
+          "prompt": "Найди задачи, в тексте которых встречается timeout.",
+          "target_command": "glab issue list --search timeout",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--all"
+          ],
+          "task_id_refs": [
+            "issue-list-search"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "invalid_flag-mr",
+      "error_types": [
+        "invalid_flag"
+      ],
+      "count": 12,
+      "objective": "Fix invalid flag failures in mr tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/mr/list.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Выведи все merge request, включая закрытые и смерженные.",
+          "target_command": "glab mr list --all",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--status",
+            "--state"
+          ],
+          "task_id_refs": [
+            "mr-list-all"
+          ]
+        },
+        {
+          "prompt": "Мне нужны только закрытые merge request.",
+          "target_command": "glab mr list --closed",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--status",
+            "--state"
+          ],
+          "task_id_refs": [
+            "mr-list-closed"
+          ]
+        },
+        {
+          "prompt": "Выведи список смерженных merge request.",
+          "target_command": "glab mr list --merged",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--status",
+            "--state"
+          ],
+          "task_id_refs": [
+            "mr-list-merged"
+          ]
+        },
+        {
+          "prompt": "Покажи открытые merge request репозитория group/project.",
+          "target_command": "glab mr list --repo group/project",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--status",
+            "--state"
+          ],
+          "task_id_refs": [
+            "mr-list-repo"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "wrong_command-api",
+      "error_types": [
+        "wrong_command"
+      ],
+      "count": 12,
+      "objective": "Fix wrong command failures in api tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/api/_index.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Прочитай projects/:fullpath методом по умолчанию.",
+          "target_command": "glab api projects/:fullpath",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--method POST",
+            "--method PUT",
+            "--method DELETE",
+            "-X POST",
+            "-X PUT",
+            "-X DELETE"
+          ],
+          "task_id_refs": [
+            "api-default-get"
+          ]
+        },
+        {
+          "prompt": "Покажи задачи gitlab-com/www-gitlab-com, закодировав путь проекта.",
+          "target_command": "glab api projects/gitlab-com%2Fwww-gitlab-com/issues",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "projects/gitlab-com/www-gitlab-com",
+            "--repo"
+          ],
+          "task_id_refs": [
+            "api-encoded-path"
+          ]
+        },
+        {
+          "prompt": "Покажи релизы текущего проекта через API.",
+          "target_command": "glab api projects/:fullpath/releases",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [],
+          "task_id_refs": [
+            "api-get-releases"
+          ]
+        },
+        {
+          "prompt": "Получи /user с инстанса example.com.",
+          "target_command": "glab api --hostname example.com user",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [],
+          "task_id_refs": [
+            "api-hostname"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "no_tool_call-api",
+      "error_types": [
+        "no_tool_call"
+      ],
+      "count": 9,
+      "objective": "Fix no tool call failures in api tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/ai/skills/-/raw/main/skills/glab/SKILL.md",
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/api/_index.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Покажи эпики вложенной группы org/subgroup через API.",
+          "target_command": "glab api \"groups/org%2Fsubgroup/epics\"",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "groups/org/subgroup"
+          ],
+          "task_id_refs": [
+            "api-nested-group"
+          ]
+        },
+        {
+          "prompt": "Выведи все задачи постранично в NDJSON.",
+          "target_command": "glab api issues --paginate --output ndjson",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [],
+          "task_id_refs": [
+            "api-paginate-ndjson"
+          ]
+        },
+        {
+          "prompt": "Получи work item 539076 из org/project через issues, а не work_items.",
+          "target_command": "glab api --method GET \"projects/org%2Fproject/issues/539076\"",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "work_items"
+          ],
+          "task_id_refs": [
+            "api-work-item"
+          ]
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "slice_id": "missing_required_flag-ci",
+      "error_types": [
+        "missing_required_flag"
+      ],
+      "count": 6,
+      "objective": "Fix missing required flag failures in ci tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/ci/status.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Выведи статус пайплайна в компактном формате.",
+          "target_command": "glab ci status --compact",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [],
+          "task_id_refs": [
+            "ci-status-compact"
+          ]
+        },
+        {
+          "prompt": "Дождись завершения пайплайна и покажи результат без запросов.",
+          "target_command": "glab ci status --wait",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [],
+          "task_id_refs": [
+            "ci-status-wait"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "invalid_flag-error",
+      "error_types": [
+        "invalid_flag"
+      ],
+      "count": 3,
+      "objective": "Fix invalid flag failures in error tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/ai/skills/-/raw/main/skills/glab/SKILL.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Покажи открытые задачи. В подсказке был флаг --state opened, но нужна корректная команда glab.",
+          "target_command": "glab issue list",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-no-state"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "no_tool_call-ci",
+      "error_types": [
+        "no_tool_call"
+      ],
+      "count": 3,
+      "objective": "Fix no tool call failures in ci tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/ci/status.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Выведи статус пайплайна в JSON, без --live, --wait и --compact.",
+          "target_command": "glab ci status --output json",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--live",
+            "--wait",
+            "--compact"
+          ],
+          "task_id_refs": [
+            "ci-status-json"
+          ]
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "slice_id": "no_tool_call-error",
+      "error_types": [
+        "no_tool_call"
+      ],
+      "count": 3,
+      "objective": "Fix no tool call failures in error tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/ai/skills/-/raw/main/skills/glab/SKILL.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Найди задачи через scope=issues и извлеки заголовки через jq, без --jq.",
+          "target_command": "glab api --method GET \"search?scope=issues&search=<query>\" | jq '.[] | {iid, title}'",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--jq"
+          ],
+          "task_id_refs": [
+            "api-pipe-jq"
+          ]
+        }
+      ],
+      "priority": 1
+    },
+    {
+      "slice_id": "wrong_command-safety",
+      "error_types": [
+        "wrong_command"
+      ],
+      "count": 3,
+      "objective": "Fix wrong command failures in safety tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/api/_index.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Прочитай задачи проекта через API без POST, PUT и DELETE.",
+          "target_command": "glab api projects/:fullpath/issues",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--method POST",
+            "--method PUT",
+            "--method DELETE",
+            "-X POST",
+            "-X PUT",
+            "-X DELETE"
+          ],
+          "task_id_refs": [
+            "safety-readonly-api"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "wrong_repo_target-issue",
+      "error_types": [
+        "wrong_repo_target"
+      ],
+      "count": 3,
+      "objective": "Fix wrong repo target failures in issue tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/issue/view.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Открой задачу по ссылке https://gitlab.com/NAMESPACE/REPO/-/issues/123 и покажи её.",
+          "target_command": "glab issue view https://gitlab.com/NAMESPACE/REPO/-/issues/123",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--repo"
+          ],
+          "task_id_refs": [
+            "issue-view-url"
+          ]
+        }
+      ],
+      "priority": 1
+    }
+  ],
+  "constraints": {
+    "tool_call_format": "qwen3_5_native_xml",
+    "reasoning_effort": "low",
+    "no_real_glab_execution": true,
+    "target_model": "unsloth/Qwen3.8-27B"
+  }
+}

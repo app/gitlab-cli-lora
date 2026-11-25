@@ -1,0 +1,69 @@
+{
+  "counts": {
+    "by_category": {
+      "api": 9,
+      "ci": 6,
+      "issue": 3,
+      "label": 3,
+      "mr": 9,
+      "release": 3,
+      "repo": 3
+    },
+    "examples": 36,
+    "held_out": 9
+  },
+  "created_at": "2026-11-25T17:10:20.758391+00:00",
+  "family": "ext",
+  "held_out": {
+    "eval_prompt_count": 76,
+    "ids": [
+      "ext-ci-trace-p1",
+      "ext-ci-trace-p2",
+      "ext-ci-trace-p3",
+      "ext-release-view-p1",
+      "ext-release-view-p2",
+      "ext-release-view-p3",
+      "ext-tags-api-p1",
+      "ext-tags-api-p2",
+      "ext-tags-api-p3"
+    ],
+    "tasks": [
+      "ci-trace",
+      "release-view",
+      "tags-api"
+    ]
+  },
+  "lang": "en",
+  "reasoning_effort": "low",
+  "shape": "shell",
+  "source_sha256": {
+    "build_dataset.py": "7657fd5abe39e9de43b2a4817ea289a781d311bfa7f1c6cead02de11c164f841",
+    "capture-request.json": "82d05810ae22f3278d8f3b0034415b27f83ba7df0ea7c2373bdcdfe87fb67404",
+    "chat_template.jinja": "af16f654968d47d09a6c604e00370b12dbc21f76456f59c9e98b82e84d9f6375",
+    "help-api.txt": "85ea91f63917ac277e1f04dbc0ed759c28327974d3de782d78b8170a09b81483",
+    "help-ci-get.txt": "c664350c0803ae49aeb03f6cc872ed4c0c3ebd1742513908d146771f94d2ebfa",
+    "help-ci-list.txt": "f58febb209b83be8d7fa3f007e72b3abc7efa6e723d6de581924af626597eecc",
+    "help-ci-trace.txt": "68cff2d04d69e0c9db29137ef4e35bbb04c278a2bd1911278fe70a29486cbe10",
+    "help-issue-board-view.txt": "761c6e70e8034409f7eaa0e3c3d4159ca524f2d783f46b1d3a35e7cac4570b59",
+    "help-label-list.txt": "347aafae3843fa5bb18358d3e00dd2a9843f93c2cf06234943171a48d622b2c5",
+    "help-mr-approvers.txt": "9ea84dad65ccf304baa88a69fb51f958871b6b218dbdcac6aab06892365f9d01",
+    "help-mr-diff.txt": "3dc010ca2c4434f9272acaf5ab29340fbda443ef86c0f3236ec92acd263bf368",
+    "help-mr-issues.txt": "98f52f7e5e7fc6812af649258909ec7fbda038ad99135178532ac72d506e035a",
+    "help-release-list.txt": "f2e041b473a99e2638bbebc775665be095b23412af0e7354f0c688f85a259a6a",
+    "help-release-view.txt": "284052e84bb6b769b5106c640c411298f147091ffb708a795270f27409715703",
+    "help-repo-view.txt": "a5e9f450a52469af6ddecef8e52773d90251a1912316ea330f4971b132414de4",
+    "shell-tool.json": "1176a77e3e9dee0306e9c3444e0ddff020d760c7313c19093a520bf274aef906",
+    "system-prompt.raw.txt": "dc8cf2c6a5a61383c6aad34813938dac93ccf06029b6152549bfa187fda3b0f8",
+    "system-prompt.txt": "c2f98361712198c07bc6d222afc6208cd74737df9549b2c3b6714e92b56a8ba9",
+    "tasks.ext.jsonl": "7c4e423a93915596279fbc6a2a9f6d34882600d7b2789f82e1ded3060324e739",
+    "tasks.ru.jsonl": "19967e3747a67a102fe2a56892e3a929902dfc384a3ed7fbfb561496aa7fc9e3"
+  },
+  "target_format": "qwen3_5_native_xml",
+  "template": {
+    "add_generation_prompt": false,
+    "enable_thinking": "undefined",
+    "jinja2_version": "3.1.6",
+    "preserve_thinking": "undefined"
+  },
+  "tool_schema_sha256": "174aaea0ab733628ae9315ccbec2f8733148a139a00f93cd102d9efa49e159e8"
+}

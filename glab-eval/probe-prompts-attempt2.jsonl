@@ -1,0 +1,25 @@
+{"id": "holdout-ci-trace-1", "prompt": "покажи лог джоба 456"}
+{"id": "holdout-ci-trace-2", "prompt": "покажи лог джоба 456"}
+{"id": "holdout-ci-trace-3", "prompt": "покажи лог джоба 456"}
+{"id": "holdout-ci-trace-4", "prompt": "покажи лог джоба 456"}
+{"id": "holdout-ci-trace-5", "prompt": "покажи лог джоба 456"}
+{"id": "holdout-release-view-1", "prompt": "покажи релиз v1.2.0"}
+{"id": "holdout-release-view-2", "prompt": "покажи релиз v1.2.0"}
+{"id": "holdout-release-view-3", "prompt": "покажи релиз v1.2.0"}
+{"id": "holdout-release-view-4", "prompt": "покажи релиз v1.2.0"}
+{"id": "holdout-release-view-5", "prompt": "покажи релиз v1.2.0"}
+{"id": "holdout-tags-api-1", "prompt": "покажи теги репозитория org/project через api"}
+{"id": "holdout-tags-api-2", "prompt": "покажи теги репозитория org/project через api"}
+{"id": "holdout-tags-api-3", "prompt": "покажи теги репозитория org/project через api"}
+{"id": "holdout-tags-api-4", "prompt": "покажи теги репозитория org/project через api"}
+{"id": "holdout-tags-api-5", "prompt": "покажи теги репозитория org/project через api"}
+{"id": "trained-mr-diff-1", "prompt": "покажи изменения в merge request 123"}
+{"id": "trained-mr-diff-2", "prompt": "покажи изменения в merge request 123"}
+{"id": "trained-mr-diff-3", "prompt": "покажи изменения в merge request 123"}
+{"id": "trained-mr-diff-4", "prompt": "покажи изменения в merge request 123"}
+{"id": "trained-mr-diff-5", "prompt": "покажи изменения в merge request 123"}
+{"id": "owner-url-1", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "owner-url-2", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "owner-url-3", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "owner-url-4", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "owner-url-5", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}

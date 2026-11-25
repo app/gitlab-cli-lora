@@ -1,0 +1,165 @@
+name: Convert glab 27B LoRA to GGUF
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "check | convert | status"
+        required: true
+        default: "check"
+        type: string
+      adapter_run:
+        description: "27B training run directory name"
+        required: false
+        default: "glab27b-train-20261121T224418Z"
+        type: string
+      outtype:
+        description: "GGUF LoRA tensor type"
+        required: false
+        default: "q8_0"
+        type: string
+
+jobs:
+  convert:
+    runs-on: gpu
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check conversion environment
+        if: github.event.inputs.action == 'check'
+        env:
+          ADAPTER_RUN: ${{ github.event.inputs.adapter_run }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          ART_ROOT=/srv/containers/runner/training/qwen38-27b-lora
+          ADAPTER="$ART_ROOT/runs/$ADAPTER_RUN/adapter"
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-lora-gguf"
+          mkdir -p "$REPORT_DIR"
+          exec > >(tee "$REPORT_DIR/ci-action.log") 2>&1
+
+          log "phase=preflight adapter=$ADAPTER"
+          test -f "$ADAPTER/adapter_config.json" || { log "error adapter not found"; exit 1; }
+          # Snapshot files are symlinks into the blob store, so do not use -type f.
+          BASE_DIR="$(find "$ART_ROOT/hf" \
+            -path '*Qwen3.8-27B-unsloth-bnb-4bit*/snapshots/*/config.json' \
+            -printf '%T@ %h\n' 2>/dev/null | sort -nr | head -1 | cut -d' ' -f2- || true)"
+          if [[ -z "$BASE_DIR" ]]; then
+            find "$ART_ROOT/hf" -maxdepth 6 -type d -name '*Qwen3.8-27B-unsloth-bnb-4bit*' -print 2>/dev/null | head -20 || true
+            log "error base model config not found in HF cache"
+            exit 1
+          fi
+          BASE_REL="${BASE_DIR#$ART_ROOT/hf/}"
+          log "base_config=$BASE_DIR"
+
+          podman run --rm --pull=never \
+            --entrypoint /bin/bash \
+            -v "$GITHUB_WORKSPACE:/workspace/src:ro" \
+            -v "$ART_ROOT:/workspace/artifacts:ro" \
+            -v "$ART_ROOT/hf:/workspace/.cache/huggingface:ro" \
+            -e ADAPTER_DIR="/workspace/artifacts/runs/$ADAPTER_RUN/adapter" \
+            -e BASE_DIR="/workspace/.cache/huggingface/$BASE_REL" \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/unsloth/unsloth:core-nightly-2026.11.08 \
+            /workspace/src/convert/check_lora_gguf.sh
+
+          df -h /srv/containers || true
+          log "phase=done check"
+          BASH
+
+      - name: Convert adapter
+        if: github.event.inputs.action == 'convert'
+        env:
+          ADAPTER_RUN: ${{ github.event.inputs.adapter_run }}
+          OUTTYPE: ${{ github.event.inputs.outtype }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          case "$OUTTYPE" in
+            q8_0|f16|bf16|f32) ;;
+            *) log "error unsupported outtype=$OUTTYPE"; exit 1 ;;
+          esac
+          ART_ROOT=/srv/containers/runner/training/qwen38-27b-lora
+          GGUF_DIR=/srv/containers/runner/unsloth/models/Qwen3.8-27B-GGUF
+          ADAPTER="$ART_ROOT/runs/$ADAPTER_RUN/adapter"
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-lora-gguf"
+          STAMP="$(date -u +%Y%m%dT%H%M%SZ)"
+          RUN_NAME="glab27b-gguf-$STAMP"
+          OUTPUT_NAME="glab27b-${OUTTYPE}-${STAMP}.gguf"
+          mkdir -p "$REPORT_DIR" "$GGUF_DIR"
+          exec > >(tee "$REPORT_DIR/ci-action.log") 2>&1
+
+          log "phase=preflight adapter=$ADAPTER output=$GGUF_DIR/$OUTPUT_NAME"
+          test -f "$ADAPTER/adapter_config.json" || { log "error adapter not found"; exit 1; }
+          # Snapshot files are symlinks into the blob store, so do not use -type f.
+          BASE_DIR="$(find "$ART_ROOT/hf" \
+            -path '*Qwen3.8-27B-unsloth-bnb-4bit*/snapshots/*/config.json' \
+            -printf '%T@ %h\n' 2>/dev/null | sort -nr | head -1 | cut -d' ' -f2- || true)"
+          if [[ -z "$BASE_DIR" ]]; then
+            find "$ART_ROOT/hf" -maxdepth 6 -type d -name '*Qwen3.8-27B-unsloth-bnb-4bit*' -print 2>/dev/null | head -20 || true
+            log "error base model config not found in HF cache"
+            exit 1
+          fi
+          BASE_REL="${BASE_DIR#$ART_ROOT/hf/}"
+          log "base_config=$BASE_DIR"
+
+          podman run --rm --pull=never \
+            --entrypoint /bin/bash \
+            -v "$GITHUB_WORKSPACE:/workspace/src:ro" \
+            -v "$ART_ROOT:/workspace/artifacts:ro" \
+            -v "$ART_ROOT/hf:/workspace/.cache/huggingface:ro" \
+            -v "/srv/containers/runner/unsloth/models:/workspace/gguf-models:rw" \
+            -v "$REPORT_DIR:/workspace/report:rw" \
+            -e ADAPTER_DIR="/workspace/artifacts/runs/$ADAPTER_RUN/adapter" \
+            -e BASE_DIR="/workspace/.cache/huggingface/$BASE_REL" \
+            -e OUTPUT_FILE="/workspace/gguf-models/Qwen3.8-27B-GGUF/$OUTPUT_NAME" \
+            -e MANIFEST_FILE=/workspace/report/manifest.json \
+            -e TEMPLATE_SRC=/workspace/src/glab-eval/docs/chat_template.jinja \
+            -e TEMPLATE_DST=/workspace/gguf-models/Qwen3.8-27B-GGUF/glab27b-chat-template.jinja \
+            -e OUTTYPE="$OUTTYPE" \
+            -e RUN_NAME="$RUN_NAME" \
+            -e ADAPTER_RUN="$ADAPTER_RUN" \
+            -e PYTHONUNBUFFERED=1 \
+            docker.io/unsloth/unsloth:core-nightly-2026.11.08 \
+            /workspace/src/convert/convert_lora_to_gguf.sh
+
+          ln -sfn "$OUTPUT_NAME" "$GGUF_DIR/glab27b-${OUTTYPE}.gguf"
+          log "phase=verify"
+          ls -l "$GGUF_DIR/glab27b-${OUTTYPE}.gguf"
+          sha256sum "$GGUF_DIR/$OUTPUT_NAME" "$GGUF_DIR/glab27b-chat-template.jinja"
+          cat "$REPORT_DIR/manifest.json"
+          df -h /srv/containers || true
+          log "phase=done convert output=$GGUF_DIR/$OUTPUT_NAME"
+          BASH
+
+      - name: Status
+        if: github.event.inputs.action == 'status'
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          log "phase=status"
+          ls -lh /srv/containers/runner/unsloth/models/Qwen3.8-27B-GGUF/glab27b-* 2>/dev/null || true
+          find /srv/containers/runner/training/qwen38-27b-lora/runs \
+            -maxdepth 1 -type d -name 'glab27b-train-*' -printf '%f\n' 2>/dev/null | sort || true
+          df -h /srv/containers || true
+          BASH
+
+      - name: Publish report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          cd "$GITHUB_WORKSPACE"
+          mkdir -p ci-lora-gguf
+          git config user.name "forgejo-actions"
+          git config user.email "actions@forgejo.local"
+          git checkout -B ci/lora-gguf-report
+          git add -f ci-lora-gguf
+          git commit -m "ci: lora gguf conversion report" || true
+          server="${GITHUB_SERVER_URL#http://}"
+          server="${server#https://}"
+          git push --force "http://x-access-token:${GITHUB_TOKEN}@${server}/${GITHUB_REPOSITORY}.git" \
+            HEAD:ci/lora-gguf-report || true
+          BASH

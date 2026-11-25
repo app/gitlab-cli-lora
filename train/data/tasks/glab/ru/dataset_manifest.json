@@ -1,0 +1,80 @@
+{
+  "counts": {
+    "by_category": {
+      "api": 36,
+      "ci": 27,
+      "error": 15,
+      "issue": 51,
+      "mr": 42,
+      "safety": 9
+    },
+    "by_task": {
+      "api-default-get": 3,
+      "api-encoded-path": 6,
+      "api-get-releases": 6,
+      "api-hostname": 6,
+      "api-nested-group": 3,
+      "api-paginate-ndjson": 6,
+      "api-pipe-jq": 6,
+      "api-work-item": 6,
+      "ci-status-branch": 6,
+      "ci-status-compact": 6,
+      "ci-status-default": 3,
+      "ci-status-json": 6,
+      "ci-status-wait": 6,
+      "issue-list-all": 6,
+      "issue-list-assignee-me": 3,
+      "issue-list-closed": 6,
+      "issue-list-default": 6,
+      "issue-list-group": 3,
+      "issue-list-label": 3,
+      "issue-list-milestone": 3,
+      "issue-list-no-state": 6,
+      "issue-list-per-page": 3,
+      "issue-list-repo": 6,
+      "issue-list-search": 3,
+      "issue-view-comments": 3,
+      "issue-view-url": 6,
+      "mr-list-all": 6,
+      "mr-list-closed": 6,
+      "mr-list-default": 3,
+      "mr-list-draft": 6,
+      "mr-list-merged": 6,
+      "mr-list-no-state": 3,
+      "mr-list-repo": 6,
+      "mr-list-reviewer": 3,
+      "mr-list-source-branch": 3,
+      "mr-view-comments": 3,
+      "safety-readonly-api": 6,
+      "safety-readonly-list": 3
+    },
+    "control_tasks": 16,
+    "examples": 180,
+    "failure_tasks": 22
+  },
+  "created_at": "2026-11-25T17:10:20.142950+00:00",
+  "held_out": {
+    "collisions": [],
+    "eval_prompt_count": 76
+  },
+  "lang": "ru",
+  "reasoning_effort": "low",
+  "shape": "glab",
+  "source_sha256": {
+    "build_dataset.py": "7657fd5abe39e9de43b2a4817ea289a781d311bfa7f1c6cead02de11c164f841",
+    "chat_template.jinja": "af16f654968d47d09a6c604e00370b12dbc21f76456f59c9e98b82e84d9f6375",
+    "config.yaml": "255275bb2b401c8f7e870ff3042e73b52211bfa762d4df419617382c352b4006",
+    "paraphrases.jsonl": "6380b4d8c520699c6b0f01aa1f734a242ad0a18313dd66bba191b701bf3cf618",
+    "tasks.jsonl": "739a809e9d9cceacb44d6a274da54561885898b251fd7f09fa5503088716a8f2",
+    "tasks.ru.jsonl": "19967e3747a67a102fe2a56892e3a929902dfc384a3ed7fbfb561496aa7fc9e3",
+    "training_handoff.json": "a66e3d16feb317a0409551228dc629349e95a8d1a9bc325c1f6429c03b854af2"
+  },
+  "target_format": "qwen3_5_native_xml",
+  "template": {
+    "add_generation_prompt": false,
+    "enable_thinking": "undefined",
+    "jinja2_version": "3.1.6",
+    "preserve_thinking": "undefined"
+  },
+  "tool_schema_sha256": "9a2890aef17b4e0be65452a46e5d8008046b7dbea5174e72da2682aded1ddf44"
+}

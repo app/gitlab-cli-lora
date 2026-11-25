@@ -1,0 +1,58 @@
+{
+  "counts": {
+    "by_phrasing": {
+      "api-rest": 6,
+      "glab-bare": 12,
+      "read-bare": 12,
+      "task-glab": 12,
+      "what-bare": 12,
+      "work-item": 12
+    },
+    "by_project": {
+      "acme/issue": 22,
+      "acme/work-items": 22,
+      "platform/mercado": 22
+    },
+    "examples": 66,
+    "held_out": 38
+  },
+  "created_at": "2026-11-25T17:10:20.055095+00:00",
+  "family": "url",
+  "held_out": {
+    "eval_prompt_count": 76,
+    "phrasings": [
+      "api-rest",
+      "glab-bare",
+      "holdout-read",
+      "read-bare",
+      "task-glab",
+      "what-bare",
+      "work-item"
+    ],
+    "projects": [
+      "acme/issue",
+      "acme/tasks",
+      "acme/work-items",
+      "platform/mercado"
+    ]
+  },
+  "lang": "en",
+  "reasoning_effort": "low",
+  "shape": "glab",
+  "source_sha256": {
+    "build_dataset.py": "7657fd5abe39e9de43b2a4817ea289a781d311bfa7f1c6cead02de11c164f841",
+    "chat_template.jinja": "af16f654968d47d09a6c604e00370b12dbc21f76456f59c9e98b82e84d9f6375",
+    "config.yaml": "255275bb2b401c8f7e870ff3042e73b52211bfa762d4df419617382c352b4006",
+    "phrasings.json": "6d8d722ebf6d7ec51295fda413a6d38a9932499d13298f418a0b1e3a9b4bceb2",
+    "slots.jsonl": "8b2acd48e62a5951603c281490d3111df35bcae31f4bd12dcc9037c81beb1765",
+    "tasks.ru.jsonl": "19967e3747a67a102fe2a56892e3a929902dfc384a3ed7fbfb561496aa7fc9e3"
+  },
+  "target_format": "qwen3_5_native_xml",
+  "template": {
+    "add_generation_prompt": false,
+    "enable_thinking": "undefined",
+    "jinja2_version": "3.1.6",
+    "preserve_thinking": "undefined"
+  },
+  "tool_schema_sha256": "9a2890aef17b4e0be65452a46e5d8008046b7dbea5174e72da2682aded1ddf44"
+}

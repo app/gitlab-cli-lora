@@ -1,0 +1,62 @@
+{
+  "run_id": "lora27b-ru-20261125T114122Z-044ff59a-r1",
+  "suite": "lora27b-ru",
+  "rep": "r1",
+  "created_at": "2026-11-25T11:41:22.386786+00:00",
+  "config_hash": "044ff59a47cdf372421d0398091376044d4e05063214888537b8de189f81a4c5",
+  "config_short_hash": "044ff59a",
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "model_id": "glab27b",
+  "model_root": "/workspace/adapter",
+  "vllm_version": "0.33.0",
+  "max_model_len": null,
+  "chat_template_sha256": "af16f654968d47d09a6c604e00370b12dbc21f76456f59c9e98b82e84d9f6375",
+  "tool_schema_sha256": "9a2890aef17b4e0be65452a46e5d8008046b7dbea5174e72da2682aded1ddf44",
+  "parser_version": "qwen-xml-v1",
+  "normalization_version": "norm-v1",
+  "repeats": 3,
+  "seed": null,
+  "generation": {
+    "temperature": 0,
+    "reasoning_effort": "low",
+    "max_tokens": 512,
+    "seed": null
+  },
+  "mode": "api",
+  "concurrency": 4,
+  "timeout_s": 90,
+  "retries": 2,
+  "python_version": "3.12.3",
+  "glab_version": "1.100.0",
+  "skill_version": "1.16.2",
+  "docs_snapshot_sha256": "021648cdbbb3985f3d59e0b318770d387af1bab5d0ebf14cab22fc2eccea3ebe",
+  "sources_retrieved_at": "2026-11-21T18:52:52Z",
+  "validation_status": "ok",
+  "validation_summary": {
+    "status": "ok",
+    "tasks": 38,
+    "categories": {
+      "api": 7,
+      "ci": 5,
+      "error": 3,
+      "issue": 12,
+      "mr": 9,
+      "safety": 2
+    },
+    "source_kinds": {
+      "docs": 33,
+      "skill": 5
+    },
+    "snapshots_verified": 7,
+    "errors": []
+  },
+  "tasks_file": "tasks.ru.jsonl",
+  "tasks_sha256": "19967e3747a67a102fe2a56892e3a929902dfc384a3ed7fbfb561496aa7fc9e3",
+  "script_sha256": {
+    "common.py": "ff081ec1ec692ea33a7a956f4749c777d64d98af1a92bebbfb4e63682aa740f1",
+    "run_eval.py": "6eadb166bc6a8abe86e74a1589f3acec7c1131d14e5f29d89b3883e7f01b45c5",
+    "score.py": "abfe4cb679a24a9b05c91bd2f42cbbc3737a544f87daf6a66e8a28590d5104a2",
+    "validate_tasks.py": "ffb85f48a7daca4c5c263e6f39b9e13359e1219e6945468c3461b27dc179c3bc"
+  },
+  "requested_responses": 114
+}

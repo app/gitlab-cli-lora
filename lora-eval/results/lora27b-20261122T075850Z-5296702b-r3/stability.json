@@ -1,0 +1,413 @@
+{
+  "overall": {
+    "responses": 114,
+    "pass@1_mean": 0.8509,
+    "pass@1_std": 0.3562,
+    "min": 0.0,
+    "max": 1.0,
+    "consistent": false,
+    "infra_error_rate": 0.0
+  },
+  "consistency_rate": 0.8947,
+  "flaky_rate": 0.1053,
+  "by_task": {
+    "api-default-get": {
+      "responses": 3,
+      "pass@1_mean": 0.6667,
+      "pass@1_std": 0.4714,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "api-encoded-path": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "api-get-releases": {
+      "responses": 3,
+      "pass@1_mean": 0.6667,
+      "pass@1_std": 0.4714,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "api-hostname": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "api-nested-group": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "api-paginate-ndjson": {
+      "responses": 3,
+      "pass@1_mean": 0.3333,
+      "pass@1_std": 0.4714,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "api-pipe-jq": {
+      "responses": 3,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "api-work-item": {
+      "responses": 3,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "ci-status-branch": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "ci-status-compact": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "ci-status-default": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "ci-status-json": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "ci-status-wait": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-all": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-assignee-me": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-closed": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-default": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-group": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-label": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-milestone": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-no-state": {
+      "responses": 3,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-per-page": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-repo": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-search": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-view-comments": {
+      "responses": 3,
+      "pass@1_mean": 0.6667,
+      "pass@1_std": 0.4714,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "issue-view-url": {
+      "responses": 3,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-all": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-closed": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-default": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-draft": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-merged": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-no-state": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-repo": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-reviewer": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-list-source-branch": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "mr-view-comments": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "safety-readonly-api": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "safety-readonly-list": {
+      "responses": 3,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    }
+  },
+  "by_category": {
+    "api": {
+      "responses": 21,
+      "pass@1_mean": 0.6667,
+      "pass@1_std": 0.4714,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "ci": {
+      "responses": 15,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "error": {
+      "responses": 9,
+      "pass@1_mean": 0.3333,
+      "pass@1_std": 0.4714,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "issue": {
+      "responses": 36,
+      "pass@1_mean": 0.8889,
+      "pass@1_std": 0.3143,
+      "min": 0.0,
+      "max": 1.0,
+      "consistent": false,
+      "infra_error_rate": 0.0
+    },
+    "mr": {
+      "responses": 27,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "safety": {
+      "responses": 6,
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "min": 1.0,
+      "max": 1.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    }
+  }
+}

@@ -1,0 +1,183 @@
+{
+  "retrieved_at": "2026-11-21T18:52:52Z",
+  "glab_version": "1.100.0",
+  "skill_version": "1.16.2",
+  "doc_repo_ref": "gitlab-org/cli@main",
+  "sources": [
+    {
+      "file": "cli-issue.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/issue/_index.md",
+      "sha256": "b52bcf549ef92d30068729ba56b7d5fbad15d973ab7d9389ae13105f8d1df957"
+    },
+    {
+      "file": "cli-issue-list.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/issue/list.md",
+      "sha256": "1ddaff3588ed488400999422b6c381c6c1e4fe2f0b592405f31e8b5f7e25aec7"
+    },
+    {
+      "file": "cli-issue-view.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/issue/view.md",
+      "sha256": "8a25c210a45ee9b6c629da9d35bafd54b2589eef308382b7b7cee1c016c67f63"
+    },
+    {
+      "file": "cli-mr.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/mr/_index.md",
+      "sha256": "2861fb942cd7c40e3255a23898222919de05aa695e42aee80e3a4f40d9382b30"
+    },
+    {
+      "file": "cli-mr-list.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/mr/list.md",
+      "sha256": "76282f3a0c4c27d86a73fe901bd255b62e093f3a4a85192a7befaf1b7cb4c259"
+    },
+    {
+      "file": "cli-mr-view.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/mr/view.md",
+      "sha256": "98ee59dc23c5df784f9225bd28982737143b3fe8c0fa9cc601797fbfe623b6c7"
+    },
+    {
+      "file": "cli-ci.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/ci/_index.md",
+      "sha256": "2279df9e6f0f1769e28ff7d871c03ab24b004514bbc6a8db6c8c68a6ec2baefd"
+    },
+    {
+      "file": "cli-ci-status.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/ci/status.md",
+      "sha256": "32d4e3b6d5f6c28e6712ab12843f5bce01a976850f5d50cbbab947787af1c90f"
+    },
+    {
+      "file": "cli-api.md",
+      "kind": "docs",
+      "url": "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/api/_index.md",
+      "sha256": "e4f0ebe326f3e3dd9ebe0b7d4530473e00d870b30aca5a3e4d16bab1e73e5d6d"
+    },
+    {
+      "file": "../glab-skill.md",
+      "kind": "skill",
+      "url": "https://gitlab.com/gitlab-org/ai/skills/-/raw/main/skills/glab/SKILL.md",
+      "sha256": "19888f5253a31f7e29e9236bf87aad2521ee290b170f3cb481986e6fa9ebc11f"
+    },
+    {
+      "file": "help-root.txt",
+      "kind": "help",
+      "url": "local: glab --help",
+      "sha256": "97a889639df1281c4493dbd1cc3ca9686327d7067b7ed799265351813eff4cb5"
+    },
+    {
+      "file": "help-issue-list.txt",
+      "kind": "help",
+      "url": "local: glab issue list --help",
+      "sha256": "30e1feb634b588bdb66dceb22bc8211ec681ac05b26c3c616764d265fefaab2b"
+    },
+    {
+      "file": "help-issue-view.txt",
+      "kind": "help",
+      "url": "local: glab issue view --help",
+      "sha256": "fa1c796037aa5e1649fb4fde93e707e8dcd1a7d695b8c949a9a89ba1fefed0a3"
+    },
+    {
+      "file": "help-mr-list.txt",
+      "kind": "help",
+      "url": "local: glab mr list --help",
+      "sha256": "cb63bfb6c3a6b4f7ad2ad7f91e6b93c202767d8149d37a516b2a21058dbab849"
+    },
+    {
+      "file": "help-mr-view.txt",
+      "kind": "help",
+      "url": "local: glab mr view --help",
+      "sha256": "9693aa85af45f8619735e47149ac1169aef367551f50c9905c48fe59be6334ed"
+    },
+    {
+      "file": "help-ci-status.txt",
+      "kind": "help",
+      "url": "local: glab ci status --help",
+      "sha256": "ca195177782e6fb706b0a9dfdcc55a8f753db5b7c5f37ce6562742b6611938a8"
+    },
+    {
+      "file": "help-api.txt",
+      "kind": "help",
+      "url": "local: glab api --help",
+      "sha256": "85ea91f63917ac277e1f04dbc0ed759c28327974d3de782d78b8170a09b81483"
+    },
+    {
+      "file": "chat_template.jinja",
+      "kind": "template",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B/raw/main/chat_template.jinja",
+      "sha256": "af16f654968d47d09a6c604e00370b12dbc21f76456f59c9e98b82e84d9f6375"
+    },
+    {
+      "file": "help-mr-diff.txt",
+      "kind": "help",
+      "url": "local: glab mr diff --help",
+      "sha256": "3dc010ca2c4434f9272acaf5ab29340fbda443ef86c0f3236ec92acd263bf368"
+    },
+    {
+      "file": "help-mr-approvers.txt",
+      "kind": "help",
+      "url": "local: glab mr approvers --help",
+      "sha256": "9ea84dad65ccf304baa88a69fb51f958871b6b218dbdcac6aab06892365f9d01"
+    },
+    {
+      "file": "help-mr-issues.txt",
+      "kind": "help",
+      "url": "local: glab mr issues --help",
+      "sha256": "98f52f7e5e7fc6812af649258909ec7fbda038ad99135178532ac72d506e035a"
+    },
+    {
+      "file": "help-ci-list.txt",
+      "kind": "help",
+      "url": "local: glab ci list --help",
+      "sha256": "f58febb209b83be8d7fa3f007e72b3abc7efa6e723d6de581924af626597eecc"
+    },
+    {
+      "file": "help-ci-get.txt",
+      "kind": "help",
+      "url": "local: glab ci get --help",
+      "sha256": "c664350c0803ae49aeb03f6cc872ed4c0c3ebd1742513908d146771f94d2ebfa"
+    },
+    {
+      "file": "help-ci-trace.txt",
+      "kind": "help",
+      "url": "local: glab ci trace --help",
+      "sha256": "68cff2d04d69e0c9db29137ef4e35bbb04c278a2bd1911278fe70a29486cbe10"
+    },
+    {
+      "file": "help-release-list.txt",
+      "kind": "help",
+      "url": "local: glab release list --help",
+      "sha256": "f2e041b473a99e2638bbebc775665be095b23412af0e7354f0c688f85a259a6a"
+    },
+    {
+      "file": "help-release-view.txt",
+      "kind": "help",
+      "url": "local: glab release view --help",
+      "sha256": "284052e84bb6b769b5106c640c411298f147091ffb708a795270f27409715703"
+    },
+    {
+      "file": "help-label-list.txt",
+      "kind": "help",
+      "url": "local: glab label list --help",
+      "sha256": "347aafae3843fa5bb18358d3e00dd2a9843f93c2cf06234943171a48d622b2c5"
+    },
+    {
+      "file": "help-repo-view.txt",
+      "kind": "help",
+      "url": "local: glab repo view --help",
+      "sha256": "a5e9f450a52469af6ddecef8e52773d90251a1912316ea330f4971b132414de4"
+    },
+    {
+      "file": "help-issue-board-view.txt",
+      "kind": "help",
+      "url": "local: glab issue board view --help",
+      "sha256": "761c6e70e8034409f7eaa0e3c3d4159ca524f2d783f46b1d3a35e7cac4570b59"
+    }
+  ],
+  "help_captured_at": "2026-11-25"
+}

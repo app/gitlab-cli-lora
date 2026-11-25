@@ -1,0 +1,50 @@
+{"id": "own-01", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-02", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-03", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-04", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-05", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-06", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-07", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-08", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-09", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-10", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-11", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-12", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-13", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-14", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-15", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-16", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-17", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-18", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-19", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-20", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-21", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-22", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-23", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-24", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-25", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-26", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-27", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-28", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-29", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "own-30", "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "holdout-project-01", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-02", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-03", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-04", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-05", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-06", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-07", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-08", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-09", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-project-10", "prompt": "прочитай командой glab https://gitlab.com/acme/tasks/-/work_items/7"}
+{"id": "holdout-phrase-01", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-02", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-03", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-04", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-05", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-06", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-07", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-08", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-09", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}
+{"id": "holdout-phrase-10", "prompt": "что написано в задаче https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117? прочитай через glab"}

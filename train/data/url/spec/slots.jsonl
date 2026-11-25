@@ -1,0 +1,16 @@
+{"group": "acme", "project": "issue", "iid": 7, "url_form": "work_items", "split": "train"}
+{"group": "acme", "project": "issue", "iid": 7, "url_form": "issues", "split": "train"}
+{"group": "acme", "project": "issue", "iid": 117, "url_form": "work_items", "split": "train"}
+{"group": "acme", "project": "issue", "iid": 117, "url_form": "issues", "split": "train"}
+{"group": "acme", "project": "work-items", "iid": 7, "url_form": "work_items", "split": "train"}
+{"group": "acme", "project": "work-items", "iid": 7, "url_form": "issues", "split": "train"}
+{"group": "acme", "project": "work-items", "iid": 117, "url_form": "work_items", "split": "train"}
+{"group": "acme", "project": "work-items", "iid": 117, "url_form": "issues", "split": "train"}
+{"group": "platform", "project": "mercado", "iid": 7, "url_form": "work_items", "split": "train"}
+{"group": "platform", "project": "mercado", "iid": 7, "url_form": "issues", "split": "train"}
+{"group": "platform", "project": "mercado", "iid": 117, "url_form": "work_items", "split": "train"}
+{"group": "platform", "project": "mercado", "iid": 117, "url_form": "issues", "split": "train"}
+{"group": "acme", "project": "tasks", "iid": 7, "url_form": "work_items", "split": "holdout"}
+{"group": "acme", "project": "tasks", "iid": 7, "url_form": "issues", "split": "holdout"}
+{"group": "acme", "project": "tasks", "iid": 117, "url_form": "work_items", "split": "holdout"}
+{"group": "acme", "project": "tasks", "iid": 117, "url_form": "issues", "split": "holdout"}

@@ -1,0 +1,191 @@
+{
+  "created_at": "2026-11-24T21:10:58.079064+00:00",
+  "endpoint": "glab27b",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "capture_sha256": "82d05810ae22f3278d8f3b0034415b27f83ba7df0ea7c2373bdcdfe87fb67404",
+  "system_prompt_sha256": "c2f98361712198c07bc6d222afc6208cd74737df9549b2c3b6714e92b56a8ba9",
+  "prompts": 6,
+  "http_failures": 0,
+  "results": [
+    {
+      "id": "work-items-url",
+      "prompt": "прочитай https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.98,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "mr-open",
+      "prompt": "покажи открытые merge request в текущем проекте",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.53,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr list\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "pipeline-failed",
+      "prompt": "посмотри, падал ли пайплайн на последнем коммите ветки main",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.15,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab ci status --branch main\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "issue-label",
+      "prompt": "выведи открытые задачи с меткой bug",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.57,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue list --label bug\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "release-latest",
+      "prompt": "какой последний релиз у этого проекта?",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 3.48,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab release list --limit 1\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "mr-comments",
+      "prompt": "прочитай комментарии к merge request 42",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.57,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab mr view 42 --comments\"}"
+        }
+      ],
+      "text": ""
+    }
+  ]
+}

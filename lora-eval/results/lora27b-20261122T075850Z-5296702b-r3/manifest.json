@@ -1,0 +1,61 @@
+{
+  "run_id": "lora27b-20261122T075850Z-5296702b-r3",
+  "suite": "lora27b",
+  "rep": "r3",
+  "created_at": "2026-11-22T07:58:50.239889+00:00",
+  "config_hash": "5296702beb0dd0027628bcce73971a2e7d9a545ef43b0130178fec3b074c18b4",
+  "config_short_hash": "5296702b",
+  "endpoint": "http://127.0.0.1:8000/v1",
+  "model_id": "glab27b",
+  "model_root": "/workspace/adapter",
+  "vllm_version": "0.33.0",
+  "max_model_len": null,
+  "chat_template_sha256": "af16f654968d47d09a6c604e00370b12dbc21f76456f59c9e98b82e84d9f6375",
+  "tool_schema_sha256": "9a2890aef17b4e0be65452a46e5d8008046b7dbea5174e72da2682aded1ddf44",
+  "parser_version": "qwen-xml-v1",
+  "normalization_version": "norm-v1",
+  "repeats": 3,
+  "seed": null,
+  "generation": {
+    "temperature": 0,
+    "reasoning_effort": "low",
+    "max_tokens": 512,
+    "seed": null
+  },
+  "mode": "api",
+  "concurrency": 4,
+  "timeout_s": 90,
+  "retries": 2,
+  "python_version": "3.12.3",
+  "glab_version": "1.100.0",
+  "skill_version": "1.16.2",
+  "docs_snapshot_sha256": "021648cdbbb3985f3d59e0b318770d387af1bab5d0ebf14cab22fc2eccea3ebe",
+  "sources_retrieved_at": "2026-11-21T18:52:52Z",
+  "validation_status": "ok",
+  "validation_summary": {
+    "status": "ok",
+    "tasks": 38,
+    "categories": {
+      "api": 7,
+      "ci": 5,
+      "error": 3,
+      "issue": 12,
+      "mr": 9,
+      "safety": 2
+    },
+    "source_kinds": {
+      "docs": 33,
+      "skill": 5
+    },
+    "snapshots_verified": 7,
+    "errors": []
+  },
+  "tasks_sha256": "739a809e9d9cceacb44d6a274da54561885898b251fd7f09fa5503088716a8f2",
+  "script_sha256": {
+    "common.py": "ac33baba7e5b1ce825b8db7a6254a0246cd422e99b6a8ba3c741f6942701416c",
+    "run_eval.py": "145944078ba93858aab30e1c747bfc11ae09959a9b1068c84ef148ee46a7981d",
+    "score.py": "abfe4cb679a24a9b05c91bd2f42cbbc3737a544f87daf6a66e8a28590d5104a2",
+    "validate_tasks.py": "d35d86fcf47b03e3342fb878773c319e864968f4d66571014e711cb3e89fd851"
+  },
+  "requested_responses": 114
+}

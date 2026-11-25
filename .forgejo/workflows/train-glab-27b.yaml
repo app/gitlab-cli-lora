@@ -1,0 +1,179 @@
+name: Train glab 27B adapter
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "train | check | status"
+        required: true
+        default: "train"
+        type: string
+      max_steps:
+        description: "Training steps"
+        required: false
+        default: "100"
+        type: string
+      lora_r:
+        description: "LoRA rank"
+        required: false
+        default: "16"
+        type: string
+      max_seq_length:
+        description: "Maximum sequence length"
+        required: false
+        default: "1024"
+        type: string
+      dataset_dirs:
+        description: "Comma-separated dataset dirs under train/data"
+        required: false
+        default: "tasks/glab/en,tasks/glab/ru"
+        type: string
+      learning_rate:
+        description: "Learning rate"
+        required: false
+        default: "2e-4"
+        type: string
+      inference:
+        description: "Run one generation check after training (1 or 0)"
+        required: false
+        default: "1"
+        type: string
+
+jobs:
+  train:
+    runs-on: gpu
+    # The shell-mix regime (max_seq_length 8192, ~3k tokens per row) needs
+    # several times the compute of the original 1024/200-step runs.
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Check GPU state
+        if: github.event.inputs.action != 'status'
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          log "phase=preflight"
+          test -f train/train_27b.py
+          test -f train/run_train_27b.sh
+          test -f train/data/tasks/glab/en/sft.jsonl
+          test -f train/data/tasks/glab/ru/sft.jsonl
+          test -f glab-eval/docs/chat_template.jinja
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          BASH
+
+      - name: Check template parity or train adapter
+        if: github.event.inputs.action != 'status'
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          ACTION: ${{ github.event.inputs.action }}
+          MAX_STEPS: ${{ github.event.inputs.max_steps }}
+          LORA_R: ${{ github.event.inputs.lora_r }}
+          MAX_SEQ_LENGTH: ${{ github.event.inputs.max_seq_length }}
+          DATASET_DIRS: ${{ github.event.inputs.dataset_dirs }}
+          LEARNING_RATE: ${{ github.event.inputs.learning_rate }}
+          INFERENCE: ${{ github.event.inputs.inference }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          if [ "$ACTION" != "train" ] && [ "$ACTION" != "check" ]; then
+            log "error unknown action=$ACTION"
+            exit 1
+          fi
+          ART_ROOT=/srv/containers/runner/training/qwen38-27b-lora
+          RUN_NAME="glab27b-${ACTION}-$(date -u +%Y%m%dT%H%M%SZ)"
+          RUN_DIR="$ART_ROOT/runs/$RUN_NAME"
+          REPORT_DIR="$GITHUB_WORKSPACE/ci-glab-27b"
+          mkdir -p "$ART_ROOT/hf" "$ART_ROOT/pip-cache" "$ART_ROOT/triton" \
+            "$ART_ROOT/torchinductor" "$RUN_DIR" "$REPORT_DIR"
+          LOG_FILE="$REPORT_DIR/ci-action.log"
+          log "phase=start action=$ACTION run=$RUN_NAME artifacts=$RUN_DIR"
+
+          exec 9>>/srv/containers/runner/gpu.lock
+          flock -n 9 || { log "error gpu lock is held by another job"; exit 1; }
+          log "gpu lock acquired"
+
+          (
+            while true; do
+              log "workflow-heartbeat action=$ACTION run=$RUN_NAME"
+              sleep 30
+            done
+          ) &
+          HB_PID=$!
+          trap 'kill "$HB_PID" 2>/dev/null || true' EXIT
+
+          timeout 300m podman run --rm --pull=never \
+            --device nvidia.com/gpu=all \
+            -v "$GITHUB_WORKSPACE:/workspace/src:rw" \
+            -v "$ART_ROOT:/workspace/artifacts:rw" \
+            -v "$ART_ROOT/hf:/workspace/.cache/huggingface:rw" \
+            -v "$ART_ROOT/pip-cache:/workspace/.cache/pip:rw" \
+            -v "$ART_ROOT/triton:/workspace/.triton:rw" \
+            -v "$ART_ROOT/torchinductor:/workspace/.torchinductor:rw" \
+            -e HF_HOME=/workspace/.cache/huggingface \
+            -e PIP_CACHE_DIR=/workspace/.cache/pip \
+            -e TRITON_CACHE_DIR=/workspace/.triton/cache \
+            -e TORCHINDUCTOR_CACHE_DIR=/workspace/.torchinductor \
+            -e HF_TOKEN="${HF_TOKEN:-}" \
+            -e HUGGING_FACE_HUB_TOKEN="${HF_TOKEN:-}" \
+            -e HF_XET_HIGH_PERFORMANCE=1 \
+            -e PYTHONUNBUFFERED=1 \
+            -e PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True \
+            -e TOKENIZERS_PARALLELISM=false \
+            -e TRAIN_MODE="$ACTION" \
+            -e TRAIN_MODEL=unsloth/Qwen3.8-27B-unsloth-bnb-4bit \
+            -e TRAIN_STEPS="$MAX_STEPS" \
+            -e TRAIN_LORA_R="$LORA_R" \
+            -e TRAIN_LORA_ALPHA="$LORA_R" \
+            -e TRAIN_MAX_SEQ_LENGTH="$MAX_SEQ_LENGTH" \
+            -e TRAIN_MIX="$DATASET_DIRS" \
+            -e TRAIN_LR="$LEARNING_RATE" \
+            -e TRAIN_INFERENCE="$INFERENCE" \
+            -e ARTIFACTS_DIR="/workspace/artifacts/runs/$RUN_NAME" \
+            -w /workspace/src \
+            docker.io/pytorch/pytorch:2.15.0-cuda13.2-cudnn9-runtime \
+            bash train/run_train_27b.sh 2>&1 | tee "$LOG_FILE"
+
+          log "phase=verify"
+          test -f "$RUN_DIR/manifest.json"
+          cat "$RUN_DIR/manifest.json"
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          log "phase=done action=$ACTION run=$RUN_NAME"
+          BASH
+
+      - name: Status
+        if: github.event.inputs.action == 'status'
+        run: |
+          bash -euo pipefail <<'BASH'
+          log() { printf '[%s] %s\n' "$(date -u +%FT%TZ)" "$*"; }
+          log "phase=status"
+          nvidia-smi --query-gpu=name,memory.used,memory.total --format=csv,noheader || true
+          df -h /srv/containers || true
+          find /srv/containers/runner/training/qwen38-27b-lora/runs \
+            -maxdepth 2 -path '*glab27b-*' -name manifest.json -print 2>/dev/null || true
+          BASH
+
+      - name: Publish report
+        if: always()
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          bash -euo pipefail <<'BASH'
+          cd "$GITHUB_WORKSPACE"
+          mkdir -p ci-glab-27b
+          latest="$(find /srv/containers/runner/training/qwen38-27b-lora/runs \
+            -maxdepth 2 -path '*glab27b-*' -name manifest.json \
+            -printf '%T@ %p\n' 2>/dev/null | sort -nr | head -1 | cut -d' ' -f2- || true)"
+          if [ -n "$latest" ]; then
+            cp "$latest" ci-glab-27b/manifest.json
+          fi
+          git config user.name "forgejo-actions"
+          git config user.email "actions@forgejo.local"
+          git checkout -B ci/training-glab-27b-report
+          git add -f ci-glab-27b
+          git commit -m "ci: training glab 27B report" || true
+          server="${GITHUB_SERVER_URL#http://}"
+          server="${server#https://}"
+          git push --force "http://x-access-token:${GITHUB_TOKEN}@${server}/${GITHUB_REPOSITORY}.git" \
+            HEAD:ci/training-glab-27b-report || true
+          BASH

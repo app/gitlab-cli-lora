@@ -1,0 +1,311 @@
+{
+  "created_at": "2026-11-25T09:28:56.475104+00:00",
+  "endpoint": "glab27b",
+  "base_url": "http://127.0.0.1:8000/v1",
+  "capture_sha256": "82d05810ae22f3278d8f3b0034415b27f83ba7df0ea7c2373bdcdfe87fb67404",
+  "system_prompt_sha256": "c2f98361712198c07bc6d222afc6208cd74737df9549b2c3b6714e92b56a8ba9",
+  "prompts": 10,
+  "http_failures": 0,
+  "results": [
+    {
+      "id": "focus-01",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 7.23,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-02",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 3.98,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-03",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 9.59,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-04",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 2.9,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"projects/all-projectplus-stuff%2Fissue/issues/117\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-05",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 11.37,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-06",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 56.77,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api projects/all-projectplus-stuff%2Fissue/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-07",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 1.59,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api projects/all-projectplus-stuff%2Fissue/issues/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-08",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 5.97,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-09",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 11.15,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab api \\\"projects/all-projectplus-stuff%2Fissue/work_items/117\\\"\"}"
+        }
+      ],
+      "text": ""
+    },
+    {
+      "id": "focus-10",
+      "prompt": "прочитай командой glab https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117",
+      "tools_sent": [
+        "edit",
+        "generate_image",
+        "generate_video",
+        "glob",
+        "grep",
+        "question",
+        "read",
+        "shell",
+        "skill",
+        "subagent",
+        "webfetch",
+        "websearch",
+        "write",
+        "execute"
+      ],
+      "status": 200,
+      "latency_s": 4.41,
+      "finish_reason": "tool_calls",
+      "tool_calls": [
+        {
+          "name": "shell",
+          "arguments": "{\"command\": \"glab issue view https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117\"}"
+        }
+      ],
+      "text": ""
+    }
+  ]
+}

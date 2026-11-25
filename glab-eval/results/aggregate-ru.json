@@ -1,0 +1,249 @@
+{
+  "generated_at": "2026-11-24T19:06:54.543421+00:00",
+  "runs": [
+    {
+      "run_id": "baseline-ru-20261124T184443Z-044ff59a-r1",
+      "suite": "baseline-ru",
+      "pass_rate": 0.3684
+    },
+    {
+      "run_id": "baseline-ru-20261124T185205Z-044ff59a-r2",
+      "suite": "baseline-ru",
+      "pass_rate": 0.3684
+    },
+    {
+      "run_id": "baseline-ru-20261124T185928Z-044ff59a-r3",
+      "suite": "baseline-ru",
+      "pass_rate": 0.3684
+    }
+  ],
+  "group_key": "baseline-ru:044ff59a",
+  "by_task": {
+    "api-default-get": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-encoded-path": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-get-releases": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-hostname": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-nested-group": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-paginate-ndjson": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-pipe-jq": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "api-work-item": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "ci-status-branch": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "ci-status-compact": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "ci-status-default": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "ci-status-json": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "ci-status-wait": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-all": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-assignee-me": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-closed": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-default": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-group": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-label": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-milestone": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-no-state": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-per-page": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-repo": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-list-search": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-view-comments": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "issue-view-url": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-all": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-closed": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-default": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-draft": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-merged": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-no-state": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-repo": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-reviewer": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-list-source-branch": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "mr-view-comments": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "safety-readonly-api": {
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    },
+    "safety-readonly-list": {
+      "pass@1_mean": 1.0,
+      "pass@1_std": 0.0,
+      "runs": 3
+    }
+  },
+  "paired_delta": {
+    "runs": [
+      "baseline-ru-20261124T184443Z-044ff59a-r1",
+      "baseline-ru-20261124T185205Z-044ff59a-r2"
+    ],
+    "delta": 0.0,
+    "ci_low": 0.0,
+    "ci_high": 0.0
+  },
+  "stable_failure_task_ids": [
+    "api-default-get",
+    "api-encoded-path",
+    "api-get-releases",
+    "api-hostname",
+    "api-nested-group",
+    "api-paginate-ndjson",
+    "api-pipe-jq",
+    "api-work-item",
+    "ci-status-compact",
+    "ci-status-json",
+    "ci-status-wait",
+    "issue-list-all",
+    "issue-list-closed",
+    "issue-list-default",
+    "issue-list-group",
+    "issue-list-no-state",
+    "issue-list-repo",
+    "issue-list-search",
+    "issue-view-url",
+    "mr-list-all",
+    "mr-list-closed",
+    "mr-list-merged",
+    "mr-list-repo",
+    "safety-readonly-api"
+  ],
+  "flaky_task_ids": []
+}

@@ -1,0 +1,70 @@
+{
+  "suites": {
+    "smoke": {
+      "runs": [
+        {
+          "run_id": "smoke-20261121T185601Z-9ab9b978-r1",
+          "config_hash": "9ab9b978959445a0c8a1d1b54c0f973783d16cceb48f909f3bc5e3b2bca9ba99",
+          "created_at": "2026-11-21T18:56:04.238672+00:00"
+        }
+      ]
+    },
+    "baseline": {
+      "runs": [
+        {
+          "run_id": "baseline-20261121T191456Z-9ab9b978-r3",
+          "config_hash": "9ab9b978959445a0c8a1d1b54c0f973783d16cceb48f909f3bc5e3b2bca9ba99",
+          "created_at": "2026-11-21T19:22:10.385294+00:00"
+        },
+        {
+          "run_id": "baseline-20261121T190443Z-9ab9b978-r2",
+          "config_hash": "9ab9b978959445a0c8a1d1b54c0f973783d16cceb48f909f3bc5e3b2bca9ba99",
+          "created_at": "2026-11-21T19:11:57.432227+00:00"
+        },
+        {
+          "run_id": "baseline-20261121T185614Z-9ab9b978-r1",
+          "config_hash": "9ab9b978959445a0c8a1d1b54c0f973783d16cceb48f909f3bc5e3b2bca9ba99",
+          "created_at": "2026-11-21T19:04:31.807226+00:00"
+        }
+      ]
+    },
+    "baseline-ru": {
+      "runs": [
+        {
+          "run_id": "baseline-ru-20261124T185928Z-044ff59a-r3",
+          "config_hash": "044ff59a47cdf372421d0398091376044d4e05063214888537b8de189f81a4c5",
+          "created_at": "2026-11-24T19:06:50.192907+00:00"
+        },
+        {
+          "run_id": "baseline-ru-20261124T185205Z-044ff59a-r2",
+          "config_hash": "044ff59a47cdf372421d0398091376044d4e05063214888537b8de189f81a4c5",
+          "created_at": "2026-11-24T18:59:27.758006+00:00"
+        },
+        {
+          "run_id": "baseline-ru-20261124T184443Z-044ff59a-r1",
+          "config_hash": "044ff59a47cdf372421d0398091376044d4e05063214888537b8de189f81a4c5",
+          "created_at": "2026-11-24T18:52:05.318373+00:00"
+        }
+      ]
+    },
+    "lora27b-ru": {
+      "runs": [
+        {
+          "run_id": "lora27b-ru-20261125T161156Z-83eb71d9-r3",
+          "config_hash": "83eb71d90e05db582ec695011424d82db2dde6e9d21fe0ded15f26e571c00d2d",
+          "created_at": "2026-11-25T16:15:35.231387+00:00"
+        },
+        {
+          "run_id": "lora27b-ru-20261125T160809Z-83eb71d9-r2",
+          "config_hash": "83eb71d90e05db582ec695011424d82db2dde6e9d21fe0ded15f26e571c00d2d",
+          "created_at": "2026-11-25T16:11:56.102820+00:00"
+        },
+        {
+          "run_id": "lora27b-ru-20261125T160413Z-83eb71d9-r1",
+          "config_hash": "83eb71d90e05db582ec695011424d82db2dde6e9d21fe0ded15f26e571c00d2d",
+          "created_at": "2026-11-25T16:08:09.167224+00:00"
+        }
+      ]
+    }
+  }
+}

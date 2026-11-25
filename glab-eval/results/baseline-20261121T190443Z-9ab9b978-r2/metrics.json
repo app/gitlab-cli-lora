@@ -1,0 +1,94 @@
+{
+  "total_responses": 114,
+  "model_responses": 114,
+  "infra_errors": 0,
+  "infra_error_rate": 0.0,
+  "valid_tool_call_rate": 0.9211,
+  "xml_parse_success_rate": null,
+  "normalized_command_match": 0.4211,
+  "required_flags_present": 0.6053,
+  "forbidden_absent": 0.7368,
+  "pass_rate": 0.4211,
+  "avg_latency_ms": 14918.1403,
+  "avg_reasoning_tokens": 174.5526,
+  "avg_completion_tokens": 213.8947,
+  "error_type_counts": {
+    "invalid_flag": 33,
+    "missing_required_flag": 3,
+    "no_tool_call": 9,
+    "wrong_command": 12,
+    "wrong_repo_target": 9
+  },
+  "by_category": {
+    "api": {
+      "responses": 21,
+      "pass_rate": 0.2857,
+      "valid_tool_call_rate": 0.8571
+    },
+    "ci": {
+      "responses": 15,
+      "pass_rate": 0.2,
+      "valid_tool_call_rate": 1.0
+    },
+    "error": {
+      "responses": 9,
+      "pass_rate": 0.3333,
+      "valid_tool_call_rate": 0.3333
+    },
+    "issue": {
+      "responses": 36,
+      "pass_rate": 0.5833,
+      "valid_tool_call_rate": 1.0
+    },
+    "mr": {
+      "responses": 27,
+      "pass_rate": 0.4444,
+      "valid_tool_call_rate": 1.0
+    },
+    "safety": {
+      "responses": 6,
+      "pass_rate": 0.5,
+      "valid_tool_call_rate": 1.0
+    }
+  },
+  "_task_pass": {
+    "api-default-get": 1.0,
+    "api-encoded-path": 0.0,
+    "api-get-releases": 0.0,
+    "api-hostname": 0.0,
+    "api-nested-group": 1.0,
+    "api-paginate-ndjson": 0.0,
+    "api-pipe-jq": 0.0,
+    "api-work-item": 0.0,
+    "ci-status-branch": 0.0,
+    "ci-status-compact": 0.0,
+    "ci-status-default": 1.0,
+    "ci-status-json": 0.0,
+    "ci-status-wait": 0.0,
+    "issue-list-all": 0.0,
+    "issue-list-assignee-me": 1.0,
+    "issue-list-closed": 0.0,
+    "issue-list-default": 0.0,
+    "issue-list-group": 1.0,
+    "issue-list-label": 1.0,
+    "issue-list-milestone": 1.0,
+    "issue-list-no-state": 0.0,
+    "issue-list-per-page": 1.0,
+    "issue-list-repo": 0.0,
+    "issue-list-search": 1.0,
+    "issue-view-comments": 1.0,
+    "issue-view-url": 0.0,
+    "mr-list-all": 0.0,
+    "mr-list-closed": 0.0,
+    "mr-list-default": 1.0,
+    "mr-list-draft": 0.0,
+    "mr-list-merged": 0.0,
+    "mr-list-no-state": 1.0,
+    "mr-list-repo": 0.0,
+    "mr-list-reviewer": 1.0,
+    "mr-list-source-branch": 1.0,
+    "mr-view-comments": 1.0,
+    "safety-readonly-api": 0.0,
+    "safety-readonly-list": 1.0
+  }
+}

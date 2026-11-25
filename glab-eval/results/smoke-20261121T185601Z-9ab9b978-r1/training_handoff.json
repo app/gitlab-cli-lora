@@ -1,0 +1,69 @@
+{
+  "run_id": "smoke-20261121T185601Z-9ab9b978-r1",
+  "source_snapshot": {
+    "retrieved_at": "2026-11-21T18:52:52Z",
+    "glab_version": "1.100.0",
+    "skill_version": "1.16.2",
+    "docs_snapshot_sha256": "021648cdbbb3985f3d59e0b318770d387af1bab5d0ebf14cab22fc2eccea3ebe"
+  },
+  "coverage": [
+    {
+      "category": "issue",
+      "tasks": 12,
+      "pass_rate": 0.0,
+      "priority": "high"
+    }
+  ],
+  "stable_failure_task_ids": [
+    "issue-list-closed",
+    "issue-list-default"
+  ],
+  "flaky_task_ids": [],
+  "control_task_ids": [],
+  "training_slices": [
+    {
+      "slice_id": "invalid_flag-issue",
+      "error_types": [
+        "invalid_flag"
+      ],
+      "count": 2,
+      "objective": "Fix invalid flag failures in issue tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/cli/-/raw/main/docs/source/issue/list.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Show only closed issues in the current project.",
+          "target_command": "glab issue list --closed",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-closed"
+          ]
+        },
+        {
+          "prompt": "List open issues in the current project.",
+          "target_command": "glab issue list",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--state",
+            "--state"
+          ],
+          "task_id_refs": [
+            "issue-list-default"
+          ]
+        }
+      ],
+      "priority": 2
+    }
+  ],
+  "constraints": {
+    "tool_call_format": "qwen3_5_native_xml",
+    "reasoning_effort": "low",
+    "no_real_glab_execution": true,
+    "target_model": "unsloth/Qwen3.8-27B"
+  }
+}

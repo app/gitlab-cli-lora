@@ -1,0 +1,9 @@
+[project]
+name = "qwen38-27b-lora-train"
+version = "0.1.0"
+description = "Build and validate Qwen3.8 native-XML SFT data for glab CLI commands"
+requires-python = ">=3.11"
+dependencies = [
+  "jinja2>=3.1,<4",
+  "pyyaml>=6,<7",
+]

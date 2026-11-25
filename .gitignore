@@ -1,0 +1,14 @@
+.opencode/
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+glab-errors-sessions/collect.log
+glab-errors-sessions/collect.out
+
+# Working notes (plan, archives) stay local; not part of the public repo.
+/tmp/
+
+# Local probe runs are published from lora-eval/probes, not here.
+glab-eval/results/probe-*/

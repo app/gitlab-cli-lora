@@ -1,0 +1,6 @@
+{"id": "work-items-url", "prompt": "прочитай https://gitlab.com/all-projectplus-stuff/issue/-/work_items/117"}
+{"id": "mr-open", "prompt": "покажи открытые merge request в текущем проекте"}
+{"id": "pipeline-failed", "prompt": "посмотри, падал ли пайплайн на последнем коммите ветки main"}
+{"id": "issue-label", "prompt": "выведи открытые задачи с меткой bug"}
+{"id": "release-latest", "prompt": "какой последний релиз у этого проекта?"}
+{"id": "mr-comments", "prompt": "прочитай комментарии к merge request 42"}

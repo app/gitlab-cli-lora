@@ -1,0 +1,34 @@
+{
+  "function": {
+    "description": "Execute a shell command and return its output. Commands run on Linux using bash. Quote file paths containing spaces or special characters. Prefer dedicated tools over shell commands when possible. When output is large, the full result is saved to a file and a truncated preview is returned. Rely on automatic truncation unless filtering the output is more useful. Commands still running after their timeout move to the background. Background commands return immediately, and you will be notified when they complete. The current session ID is available in the OPENCODE_SESSION_ID environment variable.",
+    "name": "shell",
+    "parameters": {
+      "additionalProperties": false,
+      "properties": {
+        "background": {
+          "description": "Run the command in the background and return immediately (useful for dev servers and long-running builds). You do not need to use '&' at the end of the command when using this parameter. You will be notified when it completes. DO NOT poll for completion.",
+          "type": "boolean"
+        },
+        "command": {
+          "description": "Shell command string to execute",
+          "type": "string"
+        },
+        "timeout": {
+          "description": "Optional timeout in milliseconds (default 120000). When it expires, a foreground command moves to the background and a background command is stopped.",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "workdir": {
+          "description": "Working directory to execute the command in. Defaults to the current working directory. When possible, avoid changing directories in the command and set the working directory here instead.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "command"
+      ],
+      "type": "object"
+    },
+    "strict": false
+  },
+  "type": "function"
+}

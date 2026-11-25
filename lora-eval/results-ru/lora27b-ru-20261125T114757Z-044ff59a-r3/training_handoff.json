@@ -1,0 +1,148 @@
+{
+  "run_id": "lora27b-ru-20261125T114757Z-044ff59a-r3",
+  "source_snapshot": {
+    "retrieved_at": "2026-11-21T18:52:52Z",
+    "glab_version": "1.100.0",
+    "skill_version": "1.16.2",
+    "docs_snapshot_sha256": "021648cdbbb3985f3d59e0b318770d387af1bab5d0ebf14cab22fc2eccea3ebe"
+  },
+  "coverage": [
+    {
+      "category": "api",
+      "tasks": 7,
+      "pass_rate": 1.0,
+      "priority": "normal"
+    },
+    {
+      "category": "ci",
+      "tasks": 5,
+      "pass_rate": 1.0,
+      "priority": "normal"
+    },
+    {
+      "category": "error",
+      "tasks": 3,
+      "pass_rate": 0.6667,
+      "priority": "normal"
+    },
+    {
+      "category": "issue",
+      "tasks": 12,
+      "pass_rate": 1.0,
+      "priority": "normal"
+    },
+    {
+      "category": "mr",
+      "tasks": 9,
+      "pass_rate": 1.0,
+      "priority": "normal"
+    },
+    {
+      "category": "safety",
+      "tasks": 2,
+      "pass_rate": 1.0,
+      "priority": "normal"
+    }
+  ],
+  "stable_failure_task_ids": [
+    "api-pipe-jq"
+  ],
+  "flaky_task_ids": [],
+  "control_task_ids": [
+    "api-default-get",
+    "api-encoded-path",
+    "api-get-releases",
+    "api-hostname",
+    "api-nested-group",
+    "api-paginate-ndjson",
+    "api-work-item",
+    "ci-status-branch",
+    "ci-status-compact",
+    "ci-status-default",
+    "ci-status-json",
+    "ci-status-wait",
+    "issue-list-all",
+    "issue-list-assignee-me",
+    "issue-list-closed",
+    "issue-list-default",
+    "issue-list-group",
+    "issue-list-label",
+    "issue-list-milestone",
+    "issue-list-no-state",
+    "issue-list-per-page",
+    "issue-list-repo",
+    "issue-list-search",
+    "issue-view-comments",
+    "issue-view-url",
+    "mr-list-all",
+    "mr-list-closed",
+    "mr-list-default",
+    "mr-list-draft",
+    "mr-list-merged",
+    "mr-list-no-state",
+    "mr-list-repo",
+    "mr-list-reviewer",
+    "mr-list-source-branch",
+    "mr-view-comments",
+    "safety-readonly-api",
+    "safety-readonly-list"
+  ],
+  "training_slices": [
+    {
+      "slice_id": "wrong_command-error",
+      "error_types": [
+        "wrong_command"
+      ],
+      "count": 2,
+      "objective": "Fix wrong command failures in error tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/ai/skills/-/raw/main/skills/glab/SKILL.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Найди задачи через scope=issues и извлеки заголовки через jq, без --jq.",
+          "target_command": "glab api --method GET \"search?scope=issues&search=<query>\" | jq '.[] | {iid, title}'",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--jq"
+          ],
+          "task_id_refs": [
+            "api-pipe-jq"
+          ]
+        }
+      ],
+      "priority": 2
+    },
+    {
+      "slice_id": "wrong_repo_target-error",
+      "error_types": [
+        "wrong_repo_target"
+      ],
+      "count": 1,
+      "objective": "Fix wrong repo target failures in error tasks",
+      "source_refs": [
+        "https://gitlab.com/gitlab-org/ai/skills/-/raw/main/skills/glab/SKILL.md"
+      ],
+      "examples_to_add": [
+        {
+          "prompt": "Найди задачи через scope=issues и извлеки заголовки через jq, без --jq.",
+          "target_command": "glab api --method GET \"search?scope=issues&search=<query>\" | jq '.[] | {iid, title}'",
+          "target_format": "qwen3_5_native_xml",
+          "negative_patterns": [
+            "--jq"
+          ],
+          "task_id_refs": [
+            "api-pipe-jq"
+          ]
+        }
+      ],
+      "priority": 1
+    }
+  ],
+  "constraints": {
+    "tool_call_format": "qwen3_5_native_xml",
+    "reasoning_effort": "low",
+    "no_real_glab_execution": true,
+    "target_model": "unsloth/Qwen3.8-27B"
+  }
+}

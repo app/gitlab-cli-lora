@@ -1,0 +1,355 @@
+{
+  "generated_at": "2026-11-25T16:15:35.463839+00:00",
+  "baseline": {
+    "group_key": "baseline-ru:044ff59a",
+    "runs": 3,
+    "run_pass_rates": [
+      0.3684,
+      0.3684,
+      0.3684
+    ],
+    "mean_pass_rate": 0.3684,
+    "stable_failure_task_ids": [
+      "api-default-get",
+      "api-encoded-path",
+      "api-get-releases",
+      "api-hostname",
+      "api-nested-group",
+      "api-paginate-ndjson",
+      "api-pipe-jq",
+      "api-work-item",
+      "ci-status-compact",
+      "ci-status-json",
+      "ci-status-wait",
+      "issue-list-all",
+      "issue-list-closed",
+      "issue-list-default",
+      "issue-list-group",
+      "issue-list-no-state",
+      "issue-list-repo",
+      "issue-list-search",
+      "issue-view-url",
+      "mr-list-all",
+      "mr-list-closed",
+      "mr-list-merged",
+      "mr-list-repo",
+      "safety-readonly-api"
+    ],
+    "flaky_task_ids": []
+  },
+  "adapter": {
+    "group_key": "lora27b-ru:83eb71d9",
+    "runs": 3,
+    "run_pass_rates": [
+      0.9474,
+      0.9561,
+      0.9386
+    ],
+    "mean_pass_rate": 0.9474,
+    "stable_failure_task_ids": [],
+    "flaky_task_ids": [
+      "api-paginate-ndjson",
+      "api-pipe-jq",
+      "api-work-item",
+      "issue-list-repo"
+    ]
+  },
+  "pass_rate_delta": 0.579,
+  "status_counts": {
+    "fixed": 20,
+    "improved": 4,
+    "stable_pass": 14
+  },
+  "fixed_baseline_failures": [
+    "api-default-get",
+    "api-encoded-path",
+    "api-get-releases",
+    "api-hostname",
+    "api-nested-group",
+    "ci-status-compact",
+    "ci-status-json",
+    "ci-status-wait",
+    "issue-list-all",
+    "issue-list-closed",
+    "issue-list-default",
+    "issue-list-group",
+    "issue-list-no-state",
+    "issue-list-search",
+    "issue-view-url",
+    "mr-list-all",
+    "mr-list-closed",
+    "mr-list-merged",
+    "mr-list-repo",
+    "safety-readonly-api"
+  ],
+  "remaining_adapter_failures": [],
+  "regressed_tasks": [],
+  "by_task": {
+    "api-default-get": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "api-encoded-path": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "api-get-releases": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "api-hostname": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "api-nested-group": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "api-paginate-ndjson": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 0.8889,
+      "delta": 0.8889,
+      "status": "improved"
+    },
+    "api-pipe-jq": {
+      "category": "error",
+      "baseline_mean": 0.0,
+      "adapter_mean": 0.1111,
+      "delta": 0.1111,
+      "status": "improved"
+    },
+    "api-work-item": {
+      "category": "api",
+      "baseline_mean": 0.0,
+      "adapter_mean": 0.1111,
+      "delta": 0.1111,
+      "status": "improved"
+    },
+    "ci-status-branch": {
+      "category": "ci",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "ci-status-compact": {
+      "category": "ci",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "ci-status-default": {
+      "category": "ci",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "ci-status-json": {
+      "category": "ci",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "ci-status-wait": {
+      "category": "ci",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-list-all": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-list-assignee-me": {
+      "category": "issue",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "issue-list-closed": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-list-default": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-list-group": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-list-label": {
+      "category": "issue",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "issue-list-milestone": {
+      "category": "issue",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "issue-list-no-state": {
+      "category": "error",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-list-per-page": {
+      "category": "issue",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "issue-list-repo": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 0.8889,
+      "delta": 0.8889,
+      "status": "improved"
+    },
+    "issue-list-search": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "issue-view-comments": {
+      "category": "issue",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "issue-view-url": {
+      "category": "issue",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "mr-list-all": {
+      "category": "mr",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "mr-list-closed": {
+      "category": "mr",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "mr-list-default": {
+      "category": "mr",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "mr-list-draft": {
+      "category": "mr",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "mr-list-merged": {
+      "category": "mr",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "mr-list-no-state": {
+      "category": "error",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "mr-list-repo": {
+      "category": "mr",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "mr-list-reviewer": {
+      "category": "mr",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "mr-list-source-branch": {
+      "category": "mr",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "mr-view-comments": {
+      "category": "mr",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    },
+    "safety-readonly-api": {
+      "category": "safety",
+      "baseline_mean": 0.0,
+      "adapter_mean": 1.0,
+      "delta": 1.0,
+      "status": "fixed"
+    },
+    "safety-readonly-list": {
+      "category": "safety",
+      "baseline_mean": 1.0,
+      "adapter_mean": 1.0,
+      "delta": 0.0,
+      "status": "stable_pass"
+    }
+  }
+}

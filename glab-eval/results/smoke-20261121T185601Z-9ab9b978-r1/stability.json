@@ -1,0 +1,44 @@
+{
+  "overall": {
+    "responses": 2,
+    "pass@1_mean": 0.0,
+    "pass@1_std": 0.0,
+    "min": 0.0,
+    "max": 0.0,
+    "consistent": true,
+    "infra_error_rate": 0.0
+  },
+  "consistency_rate": 1.0,
+  "flaky_rate": 0.0,
+  "by_task": {
+    "issue-list-closed": {
+      "responses": 1,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    },
+    "issue-list-default": {
+      "responses": 1,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    }
+  },
+  "by_category": {
+    "issue": {
+      "responses": 2,
+      "pass@1_mean": 0.0,
+      "pass@1_std": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "consistent": true,
+      "infra_error_rate": 0.0
+    }
+  }
+}
