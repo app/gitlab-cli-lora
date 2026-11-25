@@ -1,5 +1,12 @@
 # Training runtime
 
+This document is the **Forgejo Actions** path: every command here dispatches a
+workflow in `$FORGEJO_URL/api/v1/repos/ai/qwen38-27b-lora/...`, where
+`ai/qwen38-27b-lora` is the internal name of this same repository. Without
+Forgejo — a GPU on your own host, you inside an agent container — use
+[`run-without-ci.md`](run-without-ci.md), which runs the same containers
+directly.
+
 This project trains QLoRA adapters on a shared GPU host (RTX 5090 D v2,
 24 GiB); the evaluation endpoint defaults to `http://127.0.0.1:8000/v1` and can
 be overridden with `GLAB_EVAL_ENDPOINT`. Runtime lifecycle is owned by a

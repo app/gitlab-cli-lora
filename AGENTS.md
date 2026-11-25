@@ -12,11 +12,15 @@ operated by an agent; the human README only points here.
 ## First move
 
 1. Read `docs/training-runtime.md` — the pipeline, the GPU-host setup, the
-   evaluation protocol and the artifact paths.
+   evaluation protocol and the artifact paths. It is the Forgejo Actions path;
+   without Forgejo, follow [`docs/run-without-ci.md`](docs/run-without-ci.md),
+   which launches the same containers by hand from inside your own container.
 2. Read `train/data/README.md` — the dataset layout, sizes and regeneration
    commands.
 3. Start with something that needs no GPU: regenerate the datasets, run the
-   validator, or score an existing endpoint with the frozen benchmark.
+   validator, or score an existing endpoint with the frozen benchmark. If no
+   endpoint is up, skip the baseline rerun and say so in your report rather
+   than inventing scores.
 
 ```sh
 uv run --project train python train/build_dataset.py --lang en --shape shell
@@ -26,17 +30,21 @@ cd glab-eval && uv run python validate_tasks.py
 
 Training runs on the local GPU host — one RTX 5090 D v2, 24 GiB VRAM, shared
 with vLLM serving through `/srv/containers/runner/gpu.lock`, one job at a
-time. Never plan training before the datasets validate and the baseline reruns.
+time. Never plan training before the datasets validate; rerun the baseline
+first when a serving endpoint exists, and say plainly that you could not when
+it does not.
 
 ## GPU access from inside a container
 
-A common failure: the agent runs in a container, `nvidia-smi` is missing or
-reports no devices, but the host has a working GPU. Do not install drivers and
-do not fall back to CPU training. Ask the user to relaunch the agent container
-with the GPU device and the container runtime socket:
+The common failure is a container with no container-engine socket, so no GPU job
+can be started at all. The agent container does not need a GPU itself: job
+containers are created by the host engine through that socket and get the GPU
+from the host, so a missing `nvidia-smi` or `/dev/nvidia0` inside the agent
+container is normal. Do not install drivers and never fall back to CPU training.
 
-- NVIDIA CDI device (podman): `--device nvidia.com/gpu=all`
-- NVIDIA device (docker): `--gpus all`
+What only the user can provide is the runtime socket; ask for a relaunch from
+the same host directory:
+
 - Rootless podman socket:
   `-v /run/user/$(id -u)/podman/podman.sock:/run/podman/podman.sock`
   `-e CONTAINER_HOST=unix:///run/podman/podman.sock`
@@ -44,9 +52,12 @@ with the GPU device and the container runtime socket:
 - Docker socket: `-v /var/run/docker.sock:/var/run/docker.sock`
 - Hugging Face token for gated weights: `-e HF_TOKEN=...`
 
-Verify with `nvidia-smi` and `podman info` or `docker info`: with the runtime
-socket mounted, GPU containers launch from inside the agent container, which
-is what the workflows in this repository assume.
+`--device nvidia.com/gpu=all` (podman) or `--gpus all` (docker) belongs to the
+job container, and every launch command here already passes it. A missing
+client is yours to fix: `sudo apk add --no-cache podman-remote` on Alpine,
+`sudo apt-get install -y podman-remote` on Debian-family, then `podman info`.
+Check the GPU inside a throwaway job container, never in your own. Without the
+socket there is nothing to check: stop and ask.
 
 ## Pipeline
 

@@ -20,7 +20,8 @@ writes temporary runs to `glab-eval/results/`, then the workflow copies them to
 `training_handoff.json`, `training_brief.md`, and `report.md`; the shared
 `aggregate.json` and `index.json` sit at the top of `lora-eval/results/`.
 
-Run through the workflow:
+Run through the workflow (Forgejo Actions); without Forgejo, the same containers
+come up by hand as described in [`../docs/run-without-ci.md`](../docs/run-without-ci.md):
 
 ```sh
 # Serving smoke test only.
